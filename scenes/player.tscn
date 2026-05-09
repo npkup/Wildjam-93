@@ -2,10 +2,18 @@
 
 [ext_resource type="Script" uid="uid://c3ubxpp10k6x6" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://dkwab2xxlig2v" path="res://assets/sprites/player/detective.png" id="2_qhqgy"]
+[ext_resource type="Shader" uid="uid://3vqvtjuj7ea2" path="res://shaders/outline.gdshader" id="2_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://dpt2wj5iu3w43" path="res://assets/sprites/player/detective_run.png" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://d1j0tw275t7wp" path="res://assets/sprites/items/pistol/pistol.png" id="3_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
 size = Vector2(32, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tuyoq"]
+shader = ExtResource("2_qlg0r")
+shader_parameter/clr = Color(0, 0, 0, 1)
+shader_parameter/type = 1
+shader_parameter/thickness = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("2_qhqgy")
@@ -39,6 +47,34 @@ region = Rect2(192, 0, 32, 32)
 atlas = ExtResource("2_qhqgy")
 region = Rect2(224, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
+atlas = ExtResource("3_dqkch")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jej6c"]
+atlas = ExtResource("3_dqkch")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
+atlas = ExtResource("3_dqkch")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oprun"]
+atlas = ExtResource("3_dqkch")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8ls1"]
+atlas = ExtResource("3_dqkch")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfm1y"]
+atlas = ExtResource("3_dqkch")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fulsm"]
+atlas = ExtResource("3_dqkch")
+region = Rect2(192, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_3v2ag"]
 animations = [{
 "frames": [{
@@ -69,6 +105,32 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v2ag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jej6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ej7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oprun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8ls1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfm1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fulsm")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
 }]
 
 [node name="player" type="CharacterBody2D" unique_id=2018141324]
@@ -79,10 +141,10 @@ script = ExtResource("1_3vyb7")
 shape = SubResource("RectangleShape2D_sgp6g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=443527110]
+material = SubResource("ShaderMaterial_tuyoq")
 sprite_frames = SubResource("SpriteFrames_3v2ag")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
-frame_progress = 0.4151589
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=485629900]
 

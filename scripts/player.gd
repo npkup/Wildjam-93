@@ -18,6 +18,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, DECELLERATION * delta)
 	
+	if up_down_direction or left_right_direction:
+		$AnimatedSprite2D.play("run")
+	else:
+		$AnimatedSprite2D.play("idle")
+	
 	$Marker2D.look_at(get_global_mouse_position())
 	if $Marker2D.global_rotation_degrees > 90 or $Marker2D.global_rotation_degrees < -90:
 		$Marker2D/weapon.rotation_degrees = 180
