@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://cdavlq5y656lk"]
+
+[ext_resource type="Script" uid="uid://bpou2ja7uwov4" path="res://scripts/inventory.gd" id="1_qw0r6"]
+[ext_resource type="PackedScene" uid="uid://b3ersqtdiin4x" path="res://scenes/hotbar_slot.tscn" id="2_hj2ta"]
+
+[node name="Inventory" type="Control" unique_id=1607622581]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qw0r6")
+
+[node name="Panel" type="Panel" parent="." unique_id=1840267646]
+custom_minimum_size = Vector2(190, 42)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -50.0
+offset_right = 95.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Hbox" type="HBoxContainer" parent="Panel" unique_id=409448202]
+custom_minimum_size = Vector2(170, 32)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -37.0
+offset_right = 3.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Slot" parent="Panel/Hbox" unique_id=742956183 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="Slot2" parent="Panel/Hbox" unique_id=1591187256 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+slot_no = 2
+
+[node name="Slot3" parent="Panel/Hbox" unique_id=523134538 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+slot_no = 3
+
+[node name="Slot4" parent="Panel/Hbox" unique_id=1194334629 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+slot_no = 4
+
+[node name="Slot5" parent="Panel/Hbox" unique_id=1953234769 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+slot_no = 5

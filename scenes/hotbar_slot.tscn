@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://b3ersqtdiin4x"]
+
+[ext_resource type="Script" uid="uid://dga357s3mu2h5" path="res://scripts/slot.gd" id="1_4v6ba"]
+[ext_resource type="FontFile" uid="uid://dy1w10g1web26" path="res://Pixolletta8px.ttf" id="2_sheke"]
+
+[node name="Slot" type="Panel" unique_id=742956183]
+custom_minimum_size = Vector2(32, 32)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("1_4v6ba")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1524163317]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=1764918118]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -19.0
+offset_right = 19.0
+offset_bottom = -9.0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_sheke")
+theme_override_font_sizes/font_size = 10
+text = "1"
