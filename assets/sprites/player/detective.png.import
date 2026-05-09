@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbnryfmyppxw1"
-path="res://.godot/imported/empty.png-43c24017227dc32d2f702907d505ae58.ctex"
+uid="uid://dkwab2xxlig2v"
+path="res://.godot/imported/detective.png-8b7d491c29a86aa08e9a42a3f2ae388b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/items/pistol/empty.png"
-dest_files=["res://.godot/imported/empty.png-43c24017227dc32d2f702907d505ae58.ctex"]
+source_file="res://assets/sprites/player/detective.png"
+dest_files=["res://.godot/imported/detective.png-8b7d491c29a86aa08e9a42a3f2ae388b.ctex"]
 
 [params]
 

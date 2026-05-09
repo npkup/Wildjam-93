@@ -14,6 +14,7 @@ func _physics_process(delta: float) -> void:
 	var left_right_direction : float = Input.get_axis("left", "right")
 	if left_right_direction:
 		velocity.x = move_toward(velocity.x, MOVE_SPEED * left_right_direction, ACCELERATION * delta)
+		$AnimatedSprite2D.flip_h = !left_right_direction > 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, DECELLERATION * delta)
 	
