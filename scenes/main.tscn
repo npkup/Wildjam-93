@@ -64,7 +64,6 @@ tile_set = SubResource("TileSet_tefeu")
 position = Vector2(335, 186)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=12143856]
-zoom = Vector2(2, 2)
 process_callback = 0
 position_smoothing_enabled = true
 

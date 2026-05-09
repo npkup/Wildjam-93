@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dkwab2xxlig2v" path="res://assets/sprites/player/detective.png" id="2_qhqgy"]
 [ext_resource type="Shader" uid="uid://3vqvtjuj7ea2" path="res://shaders/outline.gdshader" id="2_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://dpt2wj5iu3w43" path="res://assets/sprites/player/detective_run.png" id="3_dqkch"]
-[ext_resource type="Texture2D" uid="uid://d1j0tw275t7wp" path="res://assets/sprites/items/pistol/pistol.png" id="3_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://d00k8e1t1ouvr" path="res://assets/sprites/items/dagger/dager.png" id="5_qlg0r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
 size = Vector2(32, 32)
@@ -15,72 +15,69 @@ shader_parameter/clr = Color(0, 0, 0, 1)
 shader_parameter/type = 1
 shader_parameter/thickness = 1.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
-atlas = ExtResource("2_qhqgy")
-region = Rect2(0, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
 atlas = ExtResource("2_qhqgy")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(0, 0, 32, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
 atlas = ExtResource("2_qhqgy")
-region = Rect2(64, 0, 32, 32)
+region = Rect2(32, 0, 32, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
 atlas = ExtResource("2_qhqgy")
-region = Rect2(96, 0, 32, 32)
+region = Rect2(64, 0, 32, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
 atlas = ExtResource("2_qhqgy")
-region = Rect2(128, 0, 32, 32)
+region = Rect2(96, 0, 32, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
 atlas = ExtResource("2_qhqgy")
-region = Rect2(160, 0, 32, 32)
+region = Rect2(128, 0, 32, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
 atlas = ExtResource("2_qhqgy")
-region = Rect2(192, 0, 32, 32)
+region = Rect2(160, 0, 32, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2wvv"]
 atlas = ExtResource("2_qhqgy")
-region = Rect2(224, 0, 32, 32)
+region = Rect2(192, 0, 32, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4r5pv"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(224, 0, 32, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
 atlas = ExtResource("3_dqkch")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 0, 32, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jej6c"]
 atlas = ExtResource("3_dqkch")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(32, 0, 32, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
 atlas = ExtResource("3_dqkch")
-region = Rect2(64, 0, 32, 32)
+region = Rect2(64, 0, 32, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oprun"]
 atlas = ExtResource("3_dqkch")
-region = Rect2(96, 0, 32, 32)
+region = Rect2(96, 0, 32, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a8ls1"]
 atlas = ExtResource("3_dqkch")
-region = Rect2(128, 0, 32, 32)
+region = Rect2(128, 0, 32, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qfm1y"]
 atlas = ExtResource("3_dqkch")
-region = Rect2(160, 0, 32, 32)
+region = Rect2(160, 0, 32, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fulsm"]
 atlas = ExtResource("3_dqkch")
-region = Rect2(192, 0, 32, 32)
+region = Rect2(192, 0, 32, 34)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3v2ag"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dqkch")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qlg0r")
 }, {
@@ -101,6 +98,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d2wvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4r5pv")
 }],
 "loop": true,
 "name": &"idle",
@@ -130,8 +130,127 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 8.0
+"speed": 12.0
 }]
+
+[sub_resource type="Animation" id="Animation_qlg0r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D/weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(18, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5707964]
+}
+
+[sub_resource type="Animation" id="Animation_smehm"]
+resource_name = "dagger-left"
+length = 0.5
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"perpendicularize_sword"
+}, {
+"args": [],
+"method": &"unperpendicularize_sword"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-1.5707963267948966, -4.712389, -3.1415927]
+}
+
+[sub_resource type="Animation" id="Animation_tuyoq"]
+resource_name = "dagger-right"
+length = 0.5
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"perpendicularize_sword"
+}, {
+"args": [],
+"method": &"unperpendicularize_sword"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-1.5707964, 1.5707964, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_fjrip"]
+resource_name = "pistol"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D/weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.3),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(18, 0), Vector2(10, 0), Vector2(18, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fjrip"]
+_data = {
+&"RESET": SubResource("Animation_qlg0r"),
+&"dagger-left": SubResource("Animation_smehm"),
+&"dagger-right": SubResource("Animation_tuyoq"),
+&"pistol": SubResource("Animation_fjrip")
+}
 
 [node name="player" type="CharacterBody2D" unique_id=2018141324]
 motion_mode = 1
@@ -145,9 +264,14 @@ material = SubResource("ShaderMaterial_tuyoq")
 sprite_frames = SubResource("SpriteFrames_3v2ag")
 animation = &"run"
 autoplay = "idle"
+frame_progress = 0.47621682
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=485629900]
+rotation = 1.5707964
 
 [node name="weapon" type="Sprite2D" parent="Marker2D" unique_id=1501774576]
 position = Vector2(18, 0)
-texture = ExtResource("3_qhqgy")
+texture = ExtResource("5_qlg0r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1340512581]
+libraries/ = SubResource("AnimationLibrary_fjrip")
