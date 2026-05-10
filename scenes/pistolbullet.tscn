@@ -9,8 +9,8 @@ size = Vector2(4, 4)
 [node name="pistolbullet" type="Area2D" unique_id=270004444]
 script = ExtResource("1_7dw51")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1510350345]
-texture = ExtResource("2_dwfev")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2011173047]
 shape = SubResource("RectangleShape2D_2blwc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1510350345]
+texture = ExtResource("2_dwfev")

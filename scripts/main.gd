@@ -8,21 +8,22 @@ var items_list_textures : Dictionary[items, Texture2D] = {
 	items.DAGGER : preload("res://assets/sprites/items/dagger/dager.png"),
 }
 
+var item_list_names : Dictionary[items, StringName] = {
+	items.EMPTY : &"",
+	items.PISTOL : &"Pistol",
+	items.DAGGER : &"Dagger",
+}
 
 var inventory_items : Dictionary[int, items] = {
 	1 : items.EMPTY,
-	2 : items.DAGGER,
-	3 : items.PISTOL,
+	2 : items.EMPTY,
+	3 : items.EMPTY,
 	4 : items.EMPTY,
 	5 : items.EMPTY
 }
 
 var focused_slot : int = 1
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
+var money : int = 1000
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

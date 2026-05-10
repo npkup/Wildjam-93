@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://clvdgy56d2dnc"]
+
+[ext_resource type="Texture2D" uid="uid://cnf0wyocvglk2" path="res://assets/sprites/particles/bullettrail.png" id="1_ybm88"]
+
+[sub_resource type="Animation" id="Animation_hqsvj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:width")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_8qnwc"]
+resource_name = "trail"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:width")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 6.0, 4.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jnhwm"]
+_data = {
+&"RESET": SubResource("Animation_hqsvj"),
+&"trail": SubResource("Animation_8qnwc")
+}
+
+[node name="trail" type="Line2D" unique_id=442947919]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+points = PackedVector2Array(640, 0, 0, 0)
+width = 0.0
+texture = ExtResource("1_ybm88")
+texture_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=843144820]
+libraries/ = SubResource("AnimationLibrary_jnhwm")
+autoplay = &"trail"

@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://c3ubxpp10k6x6" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://dkwab2xxlig2v" path="res://assets/sprites/player/detective.png" id="2_qhqgy"]
 [ext_resource type="Shader" uid="uid://3vqvtjuj7ea2" path="res://shaders/outline.gdshader" id="2_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://dmrtrsu683t46" path="res://assets/sounds/pistol_shot.mp3" id="2_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://dpt2wj5iu3w43" path="res://assets/sprites/player/detective_run.png" id="3_dqkch"]
+[ext_resource type="AudioStream" uid="uid://w78oaweh4y60" path="res://assets/sounds/dagger.mp3" id="3_fjrip"]
 [ext_resource type="Texture2D" uid="uid://d1j0tw275t7wp" path="res://assets/sprites/items/pistol/pistol.png" id="5_qlg0r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
@@ -191,6 +193,18 @@ _data = {
 [node name="player" type="CharacterBody2D" unique_id=2018141324]
 motion_mode = 1
 script = ExtResource("1_3vyb7")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1212676315]
+
+[node name="gunshot_pistol" type="AudioStreamPlayer2D" parent="Node2D" unique_id=2051967048]
+stream = ExtResource("2_tuyoq")
+volume_db = -24.33
+bus = &"Sound Effects"
+
+[node name="dagger" type="AudioStreamPlayer2D" parent="Node2D" unique_id=863684240]
+stream = ExtResource("3_fjrip")
+volume_db = 24.0
+bus = &"Sound Effects"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1197017778]
 shape = SubResource("RectangleShape2D_sgp6g")
