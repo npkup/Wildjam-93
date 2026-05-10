@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://dcfcireo4oyh2" path="res://scripts/starter_weapons.gd" id="7_85g3d"]
 [ext_resource type="Texture2D" uid="uid://d1j0tw275t7wp" path="res://assets/sprites/items/pistol/pistol.png" id="7_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://d00k8e1t1ouvr" path="res://assets/sprites/items/dagger/dager.png" id="8_tipki"]
+[ext_resource type="Texture2D" uid="uid://br3ywp8u0qnjj" path="res://assets/sprites/items/sword/sword.png" id="11_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://ddj8ydl7752sm" path="res://assets/sprites/items/shotgun/SHORTGUN.png" id="12_eb6dy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbgi4"]
 texture = ExtResource("4_jyhfs")
@@ -328,7 +330,7 @@ offset_bottom = 151.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("5_tbgi4")
 theme_override_font_sizes/font_size = 10
-text = "Any 2"
+text = "Any 4"
 horizontal_alignment = 1
 
 [node name="StarterWeapons" type="Panel" parent="Startingmenu/Control" unique_id=1732335035]
@@ -364,9 +366,15 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Startingmenu/Control/StarterWeapons/HBoxContainer/Pistol" unique_id=1995977853]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -14.0
+offset_right = 16.0
+offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_o6xl0")
@@ -405,15 +413,19 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 19.0
+offset_right = -14.0
+offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_tipki")
 
-[node name="Empty" type="Button" parent="Startingmenu/Control/StarterWeapons/HBoxContainer" unique_id=610962282]
+[node name="Sword" type="Button" parent="Startingmenu/Control/StarterWeapons/HBoxContainer" unique_id=610962282]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="Startingmenu/Control/StarterWeapons/HBoxContainer/Empty" unique_id=1016337356]
+[node name="Label3" type="Label" parent="Startingmenu/Control/StarterWeapons/HBoxContainer/Sword" unique_id=1016337356]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -422,30 +434,40 @@ offset_bottom = 15.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("5_tbgi4")
 theme_override_font_sizes/font_size = 10
-text = "Dagger"
+text = "Sword"
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Startingmenu/Control/StarterWeapons/HBoxContainer/Empty" unique_id=2056397050]
+[node name="TextureRect" type="TextureRect" parent="Startingmenu/Control/StarterWeapons/HBoxContainer/Sword" unique_id=2056397050]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 18.0
+offset_right = -17.0
+offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("11_ya4ey")
 
-[node name="Empty2" type="Button" parent="Startingmenu/Control/StarterWeapons/HBoxContainer" unique_id=1166399820]
+[node name="Shotgun" type="Button" parent="Startingmenu/Control/StarterWeapons/HBoxContainer" unique_id=1166399820]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Startingmenu/Control/StarterWeapons/HBoxContainer/Empty2" unique_id=1541180492]
+[node name="TextureRect" type="TextureRect" parent="Startingmenu/Control/StarterWeapons/HBoxContainer/Shotgun" unique_id=1541180492]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 17.0
+offset_right = -18.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("12_eb6dy")
 
-[node name="Label4" type="Label" parent="Startingmenu/Control/StarterWeapons/HBoxContainer/Empty2" unique_id=91497684]
+[node name="Label4" type="Label" parent="Startingmenu/Control/StarterWeapons/HBoxContainer/Shotgun" unique_id=91497684]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -454,7 +476,7 @@ offset_bottom = 15.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("5_tbgi4")
 theme_override_font_sizes/font_size = 10
-text = "Dagger"
+text = "Shotgun"
 horizontal_alignment = 1
 
 [node name="Empty3" type="Button" parent="Startingmenu/Control/StarterWeapons/HBoxContainer" unique_id=839280086]
@@ -569,5 +591,7 @@ vertical_alignment = 1
 
 [connection signal="pressed" from="Startingmenu/Control/StarterWeapons/HBoxContainer/Pistol" to="Startingmenu/Control/StarterWeapons" method="_on_pistol_pressed"]
 [connection signal="pressed" from="Startingmenu/Control/StarterWeapons/HBoxContainer/Dagger" to="Startingmenu/Control/StarterWeapons" method="_on_dagger_pressed"]
+[connection signal="pressed" from="Startingmenu/Control/StarterWeapons/HBoxContainer/Sword" to="Startingmenu/Control/StarterWeapons" method="_on_sword_pressed"]
+[connection signal="pressed" from="Startingmenu/Control/StarterWeapons/HBoxContainer/Shotgun" to="Startingmenu/Control/StarterWeapons" method="_on_shotgun_pressed"]
 [connection signal="pressed" from="Startingmenu/Control/VBoxContainer/Clear" to="Startingmenu/Control/StarterWeapons" method="_on_clear_pressed"]
 [connection signal="pressed" from="Startingmenu/Control/VBoxContainer/Confirm" to="Startingmenu/Control/StarterWeapons" method="_on_confirm_pressed"]

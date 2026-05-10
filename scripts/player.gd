@@ -34,7 +34,6 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("attack") and attack_cooldown_timer == 0:
 			$AnimationPlayer.stop()
 			match Global.inventory_items[Global.focused_slot]:
-				
 				Global.items.PISTOL:
 					$AnimationPlayer.play("pistol")
 					var bullet : Area2D = pistol_bullet.instantiate()
@@ -50,6 +49,26 @@ func _physics_process(delta: float) -> void:
 					attack_cooldown_timer = $AnimationPlayer.get_animation("pistol").length / $AnimationPlayer.speed_scale
 					dagger_sound.play()
 					dagger_sound.pitch_scale = randf_range(0.96, 1.04)
+				Global.items.SHOTGUN:
+					var bullet1 : Area2D = pistol_bullet.instantiate()
+					var bullet2 : Area2D = pistol_bullet.instantiate()
+					var bullet3 : Area2D = pistol_bullet.instantiate()
+					bullet1.global_position = $Marker2D/weapon.global_position
+					bullet2.global_position = $Marker2D/weapon.global_position
+					bullet3.global_position = $Marker2D/weapon.global_position
+					bullet1.rotation_degrees = $Marker2D.rotation_degrees - 15
+					add_sibling(bullet1)
+					bullet2.rotation_degrees = $Marker2D.rotation_degrees
+					add_sibling(bullet2)
+					bullet3.rotation_degrees = $Marker2D.rotation_degrees + 15
+					add_sibling(bullet3)
+					$AnimationPlayer.play("shotgun")
+					$Node2D/shotgun.play()
+					$Node2D/shotgun.pitch_scale = randf_range(0.96, 1.04)
+					velocity.x = -cos($Marker2D.rotation) * 200
+					velocity.y = -sin($Marker2D.rotation) * 200
+					camera_shake_power = 6
+					attack_cooldown_timer = $AnimationPlayer.get_animation("shotgun").length / $AnimationPlayer.speed_scale
 		
 		
 		if up_down_direction:

@@ -1,7 +1,7 @@
 extends Panel
 
 var weapons_chosen : Array[Global.items] = []
-var max_choosable  : int = 2
+var max_choosable  : int = 4
 
 func _process(_delta: float) -> void:
 	$"../VBoxContainer/Confirm".disabled = !weapons_chosen.size() >= max_choosable
@@ -55,3 +55,13 @@ func _on_clear_pressed() -> void:
 
 func _on_confirm_pressed() -> void:
 	start_game()
+
+
+func _on_sword_pressed() -> void:
+	weapons_chosen.append(Global.items.SWORD)
+	$HBoxContainer/Sword.disabled = true
+
+
+func _on_shotgun_pressed() -> void:
+	weapons_chosen.append(Global.items.SHOTGUN)
+	$HBoxContainer/Shotgun.disabled = true

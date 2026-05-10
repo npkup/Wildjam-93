@@ -6,7 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://dmrtrsu683t46" path="res://assets/sounds/pistol_shot.mp3" id="2_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://dpt2wj5iu3w43" path="res://assets/sprites/player/detective_run.png" id="3_dqkch"]
 [ext_resource type="AudioStream" uid="uid://w78oaweh4y60" path="res://assets/sounds/dagger.mp3" id="3_fjrip"]
-[ext_resource type="Texture2D" uid="uid://d1j0tw275t7wp" path="res://assets/sprites/items/pistol/pistol.png" id="5_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://dr35j240hxehl" path="res://assets/sounds/shotgun.mp3" id="4_smehm"]
+[ext_resource type="Texture2D" uid="uid://ddj8ydl7752sm" path="res://assets/sprites/items/shotgun/SHORTGUN.png" id="7_fjrip"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
 size = Vector2(32, 32)
@@ -183,11 +184,27 @@ tracks/0/keys = {
 "values": [Vector2(18, 0), Vector2(10, 0), Vector2(18, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_ur7pv"]
+resource_name = "shotgun"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D/weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(18, 0), Vector2(10, 0), Vector2(18, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fjrip"]
 _data = {
 &"RESET": SubResource("Animation_qlg0r"),
 &"dagger": SubResource("Animation_smehm"),
-&"pistol": SubResource("Animation_fjrip")
+&"pistol": SubResource("Animation_fjrip"),
+&"shotgun": SubResource("Animation_ur7pv")
 }
 
 [node name="player" type="CharacterBody2D" unique_id=2018141324]
@@ -206,6 +223,10 @@ stream = ExtResource("3_fjrip")
 volume_db = 24.0
 bus = &"Sound Effects"
 
+[node name="shotgun" type="AudioStreamPlayer2D" parent="Node2D" unique_id=2075101108]
+stream = ExtResource("4_smehm")
+bus = &"Sound Effects"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1197017778]
 shape = SubResource("RectangleShape2D_sgp6g")
 
@@ -221,7 +242,7 @@ rotation = -1.5707964
 
 [node name="weapon" type="Sprite2D" parent="Marker2D" unique_id=1501774576]
 position = Vector2(18, 0)
-texture = ExtResource("5_qlg0r")
+texture = ExtResource("7_fjrip")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1340512581]
 libraries/ = SubResource("AnimationLibrary_fjrip")

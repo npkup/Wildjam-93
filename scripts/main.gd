@@ -1,17 +1,21 @@
 extends Node2D
 
-enum items {EMPTY, PISTOL, DAGGER}
+enum items {EMPTY, PISTOL, DAGGER, SWORD, SHOTGUN}
 
 var items_list_textures : Dictionary[items, Texture2D] = {
 	items.EMPTY  : preload("res://assets/sprites/items/empty/empty.png"),
 	items.PISTOL : preload("res://assets/sprites/items/pistol/pistol.png"),
 	items.DAGGER : preload("res://assets/sprites/items/dagger/dager.png"),
+	items.SWORD : preload("res://assets/sprites/items/sword/sword.png"),
+	items.SHOTGUN : preload("res://assets/sprites/items/shotgun/SHORTGUN.png")
 }
 
 var item_list_names : Dictionary[items, StringName] = {
 	items.EMPTY : &"",
 	items.PISTOL : &"Pistol",
 	items.DAGGER : &"Dagger",
+	items.SWORD : &"Sword",
+	items.SHOTGUN : &"Shotgun"
 }
 
 var inventory_items : Dictionary[int, items] = {
