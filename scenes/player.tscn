@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dkwab2xxlig2v" path="res://assets/sprites/player/detective.png" id="2_qhqgy"]
 [ext_resource type="Shader" uid="uid://3vqvtjuj7ea2" path="res://shaders/outline.gdshader" id="2_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://dpt2wj5iu3w43" path="res://assets/sprites/player/detective_run.png" id="3_dqkch"]
-[ext_resource type="Texture2D" uid="uid://d00k8e1t1ouvr" path="res://assets/sprites/items/dagger/dager.png" id="5_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://d1j0tw275t7wp" path="res://assets/sprites/items/pistol/pistol.png" id="5_qlg0r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
 size = Vector2(32, 32)
@@ -147,85 +147,22 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(18, 0)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Marker2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.5707964]
-}
 
 [sub_resource type="Animation" id="Animation_smehm"]
-resource_name = "dagger-left"
-length = 0.5
+resource_name = "dagger"
+length = 0.3
 step = 0.1
-tracks/0/type = "method"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".")
+tracks/0/path = NodePath("Marker2D/weapon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"perpendicularize_sword"
-}, {
-"args": [],
-"method": &"unperpendicularize_sword"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Marker2D:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [-1.5707963267948966, -4.712389, -3.1415927]
-}
-
-[sub_resource type="Animation" id="Animation_tuyoq"]
-resource_name = "dagger-right"
-length = 0.5
-step = 0.1
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"perpendicularize_sword"
-}, {
-"args": [],
-"method": &"unperpendicularize_sword"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Marker2D:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [-1.5707964, 1.5707964, 0.0]
+"values": [Vector2(18, 0), Vector2(50, 0), Vector2(18, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_fjrip"]
@@ -247,8 +184,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fjrip"]
 _data = {
 &"RESET": SubResource("Animation_qlg0r"),
-&"dagger-left": SubResource("Animation_smehm"),
-&"dagger-right": SubResource("Animation_tuyoq"),
+&"dagger": SubResource("Animation_smehm"),
 &"pistol": SubResource("Animation_fjrip")
 }
 
@@ -267,7 +203,7 @@ autoplay = "idle"
 frame_progress = 0.47621682
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=485629900]
-rotation = 1.5707964
+rotation = -1.5707964
 
 [node name="weapon" type="Sprite2D" parent="Marker2D" unique_id=1501774576]
 position = Vector2(18, 0)
