@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cgen5ie661h06"]
+
+[ext_resource type="Script" uid="uid://cmx0f13pd6gf8" path="res://scripts/enemy.gd" id="1_mtegv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtegv"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=409557503]
+script = ExtResource("1_mtegv")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1512732202]
+position = Vector2(-4, 0)
+color = Color(0.31, 0.08990001, 0.08990001, 1)
+polygon = PackedVector2Array(-6, -10, 14, -10, 14, 10, -6, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1106404746]
+shape = SubResource("RectangleShape2D_mtegv")

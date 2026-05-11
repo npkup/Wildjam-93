@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cl338r0geonwq"]
+
+[ext_resource type="Script" uid="uid://bta7jhpdexk1t" path="res://scripts/enemyhurter.gd" id="1_eil35"]
+
+[node name="Enemyhurter" type="Area2D" unique_id=1081952204]
+script = ExtResource("1_eil35")

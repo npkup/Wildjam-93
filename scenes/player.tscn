@@ -7,10 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://dpt2wj5iu3w43" path="res://assets/sprites/player/detective_run.png" id="3_dqkch"]
 [ext_resource type="AudioStream" uid="uid://w78oaweh4y60" path="res://assets/sounds/dagger.mp3" id="3_fjrip"]
 [ext_resource type="AudioStream" uid="uid://dr35j240hxehl" path="res://assets/sounds/shotgun.mp3" id="4_smehm"]
-[ext_resource type="Texture2D" uid="uid://ddj8ydl7752sm" path="res://assets/sprites/items/shotgun/SHORTGUN.png" id="7_fjrip"]
+[ext_resource type="AudioStream" uid="uid://la06rhqiitua" path="res://assets/sounds/sword_woosh.mp3" id="5_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://d00k8e1t1ouvr" path="res://assets/sprites/items/dagger/dager.png" id="9_y4r1p"]
+[ext_resource type="Script" uid="uid://bta7jhpdexk1t" path="res://scripts/enemyhurter.gd" id="10_d2wvv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
-size = Vector2(32, 32)
+size = Vector2(14, 9)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tuyoq"]
 shader = ExtResource("2_qlg0r")
@@ -136,12 +138,18 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_y4r1p"]
+radius = 30.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y4r1p"]
+size = Vector2(49, 10)
+
 [sub_resource type="Animation" id="Animation_qlg0r"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Marker2D/weapon:position")
+tracks/0/path = NodePath("Marker2D/Marker2D/weapon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -149,6 +157,66 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(18, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:weapon_angle_ovveride")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Marker2D/Marker2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:perpendicular_weapon")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Marker2D/EnemyHurter/sword:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Marker2D/EnemyHurter/dagger:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_smehm"]
@@ -158,7 +226,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Marker2D/weapon:position")
+tracks/0/path = NodePath("Marker2D/Marker2D/weapon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -167,6 +235,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(18, 0), Vector2(50, 0), Vector2(18, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D/EnemyHurter/dagger:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_fjrip"]
 resource_name = "pistol"
@@ -174,7 +254,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Marker2D/weapon:position")
+tracks/0/path = NodePath("Marker2D/Marker2D/weapon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -189,7 +269,7 @@ resource_name = "shotgun"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Marker2D/weapon:position")
+tracks/0/path = NodePath("Marker2D/Marker2D/weapon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -199,17 +279,83 @@ tracks/0/keys = {
 "values": [Vector2(18, 0), Vector2(10, 0), Vector2(18, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_y4r1p"]
+resource_name = "sword"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:weapon_angle_ovveride")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D/Marker2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.29999998, 0.39999998, 0.5, 0.9),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [0.0, -1.3089969, 1.3089969, 1.3089969, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:perpendicular_weapon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Marker2D/Marker2D/weapon:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.29999998, 0.35, 0.39999998),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(18, 0), Vector2(28, 0), Vector2(60, 0), Vector2(18, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Marker2D/EnemyHurter/sword:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fjrip"]
 _data = {
 &"RESET": SubResource("Animation_qlg0r"),
 &"dagger": SubResource("Animation_smehm"),
 &"pistol": SubResource("Animation_fjrip"),
-&"shotgun": SubResource("Animation_ur7pv")
+&"shotgun": SubResource("Animation_ur7pv"),
+&"sword": SubResource("Animation_y4r1p")
 }
 
 [node name="player" type="CharacterBody2D" unique_id=2018141324]
 motion_mode = 1
 script = ExtResource("1_3vyb7")
+perpendicular_weapon = false
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1212676315]
 
@@ -227,7 +373,11 @@ bus = &"Sound Effects"
 stream = ExtResource("4_smehm")
 bus = &"Sound Effects"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1197017778]
+[node name="sword" type="AudioStreamPlayer2D" parent="Node2D" unique_id=292088169]
+stream = ExtResource("5_ur7pv")
+
+[node name="hitbox" type="CollisionShape2D" parent="." unique_id=1197017778]
+position = Vector2(0, 11.5)
 shape = SubResource("RectangleShape2D_sgp6g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=443527110]
@@ -238,11 +388,30 @@ autoplay = "idle"
 frame_progress = 0.47621682
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=485629900]
-rotation = -1.5707964
 
-[node name="weapon" type="Sprite2D" parent="Marker2D" unique_id=1501774576]
+[node name="EnemyHurter" type="Area2D" parent="Marker2D" unique_id=1372523463]
 position = Vector2(18, 0)
-texture = ExtResource("7_fjrip")
+script = ExtResource("10_d2wvv")
+metadata/_custom_type_script = "uid://bta7jhpdexk1t"
+
+[node name="sword" type="CollisionShape2D" parent="Marker2D/EnemyHurter" unique_id=2123485796]
+position = Vector2(11, 0)
+shape = SubResource("CircleShape2D_y4r1p")
+disabled = true
+
+[node name="dagger" type="CollisionShape2D" parent="Marker2D/EnemyHurter" unique_id=1356460319]
+position = Vector2(11.5, 0)
+shape = SubResource("RectangleShape2D_y4r1p")
+disabled = true
+
+[node name="Marker2D" type="Marker2D" parent="Marker2D" unique_id=897336161]
+
+[node name="weapon" type="Sprite2D" parent="Marker2D/Marker2D" unique_id=1501774576]
+position = Vector2(18, 0)
+texture = ExtResource("9_y4r1p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1340512581]
 libraries/ = SubResource("AnimationLibrary_fjrip")
+
+[connection signal="animation_changed" from="AnimationPlayer" to="." method="_on_animation_player_animation_changed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

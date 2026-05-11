@@ -32,3 +32,11 @@ var money : int = 1000
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	focused_slot = clamp(focused_slot, 1, 5)
+
+
+func get_collision_layer_by_name(layer_name: String) -> int:
+	for i in range(1, 33):
+		var setting_path = "layer_names/2d_physics/layer_" + str(i)
+		if ProjectSettings.get_setting(setting_path) == layer_name:
+			return i
+	return -1

@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://ub545o7f3bte"]
+
+[ext_resource type="Texture2D" uid="uid://yffjqrt6mqbl" path="res://assets/sprites/particles/impactcloud.png" id="1_lkwsm"]
+
+[sub_resource type="Gradient" id="Gradient_lkwsm"]
+offsets = PackedFloat32Array(0, 0.08987247, 0.48196232, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tfgyx"]
+gradient = SubResource("Gradient_lkwsm")
+
+[sub_resource type="Curve" id="Curve_ans7q"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.12092495, 1), 0.0, 0.0, 0, 0, Vector2(0.76118827, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_3vhgw"]
+curve = SubResource("Curve_ans7q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tfgyx"]
+particle_flag_disable_z = true
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+damping_min = 32.38
+damping_max = 32.38
+scale_min = 0.29999998
+scale_max = 0.7
+scale_curve = SubResource("CurveTexture_3vhgw")
+color_ramp = SubResource("GradientTexture1D_tfgyx")
+
+[sub_resource type="GDScript" id="GDScript_xa4fn"]
+script/source = "extends GPUParticles2D
+
+
+func _ready() -> void:
+	emitting = true
+	await get_tree().create_timer(lifetime*speed_scale).timeout
+	queue_free()
+"
+
+[node name="GPUParticles2D" type="GPUParticles2D" unique_id=1929464463]
+emitting = false
+amount = 16
+texture = ExtResource("1_lkwsm")
+lifetime = 1.5
+one_shot = true
+speed_scale = 1.9100000000000001
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_tfgyx")
+script = SubResource("GDScript_xa4fn")

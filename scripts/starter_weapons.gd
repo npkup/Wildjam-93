@@ -4,7 +4,7 @@ var weapons_chosen : Array[Global.items] = []
 var max_choosable  : int = 4
 
 func _process(_delta: float) -> void:
-	$"../VBoxContainer/Confirm".disabled = !weapons_chosen.size() >= max_choosable
+	#$"../VBoxContainer/Confirm".disabled = !weapons_chosen.size() >= max_choosable
 	
 	if !weapons_chosen:
 		for label in $"../../PanelContainer/VBoxContainer".get_children():
