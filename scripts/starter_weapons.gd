@@ -3,6 +3,9 @@ extends Panel
 var weapons_chosen : Array[Global.items] = []
 var max_choosable  : int = 4
 
+func _ready() -> void:
+	$"..".show()
+
 func _process(_delta: float) -> void:
 	#$"../VBoxContainer/Confirm".disabled = !weapons_chosen.size() >= max_choosable
 	

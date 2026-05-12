@@ -26,8 +26,8 @@ position = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_03b2l")
 
 [node name="AnimatableBody2D" type="StaticBody2D" parent="." unique_id=1277925928]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 7
+collision_mask = 7
 
 [node name="Polygon2D" type="Polygon2D" parent="AnimatableBody2D" unique_id=497554065]
 color = Color(0, 0, 0, 1)

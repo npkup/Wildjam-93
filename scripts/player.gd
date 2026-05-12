@@ -17,12 +17,22 @@ var attack_cooldown_timer : float = 0
 var weapon_target_rotation_degrees : float = 0
 var camera_shake_power : int = 0
 var player_enabled : bool = false
-
-
+var health : int = 100:
+	set(value):
+		if value > health:
+			$playerdmg.play("player_heal")
+		else:
+			$playerdmg.play("player_hurt")
+		health = value
+		$"../UI/healthbar".value = health
+var max_health : int = 100
 
 var bullet_trail : PackedScene = preload("res://scenes/bullettrail.tscn")
 var pistol_bullet : PackedScene = preload("res://scenes/pistolbullet.tscn")
 
+func _ready() -> void:
+	$"../UI/healthbar".value = health
+	$"../UI/healthbar".max_value = max_health
 
 func _physics_process(delta: float) -> void:
 	if player_enabled:

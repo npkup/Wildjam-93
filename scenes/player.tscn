@@ -337,7 +337,7 @@ tracks/4/path = NodePath("Marker2D/EnemyHurter/sword:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.3, 0.7),
+"times": PackedFloat32Array(0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -350,6 +350,59 @@ _data = {
 &"pistol": SubResource("Animation_fjrip"),
 &"shotgun": SubResource("Animation_ur7pv"),
 &"sword": SubResource("Animation_y4r1p")
+}
+
+[sub_resource type="Animation" id="Animation_d2wvv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3v2ag"]
+resource_name = "player_heal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 1, 0.116666794, 1), Color(0, 1, 0.116666794, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jej6c"]
+resource_name = "player_hurt"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f1ej7"]
+_data = {
+&"RESET": SubResource("Animation_d2wvv"),
+&"player_heal": SubResource("Animation_3v2ag"),
+&"player_hurt": SubResource("Animation_jej6c")
 }
 
 [node name="player" type="CharacterBody2D" unique_id=2018141324]
@@ -391,6 +444,8 @@ frame_progress = 0.47621682
 
 [node name="EnemyHurter" type="Area2D" parent="Marker2D" unique_id=1372523463]
 position = Vector2(18, 0)
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("10_d2wvv")
 metadata/_custom_type_script = "uid://bta7jhpdexk1t"
 
@@ -412,6 +467,9 @@ texture = ExtResource("9_y4r1p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1340512581]
 libraries/ = SubResource("AnimationLibrary_fjrip")
+
+[node name="playerdmg" type="AnimationPlayer" parent="." unique_id=430512754]
+libraries/ = SubResource("AnimationLibrary_f1ej7")
 
 [connection signal="animation_changed" from="AnimationPlayer" to="." method="_on_animation_player_animation_changed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
