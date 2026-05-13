@@ -14,9 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://br3ywp8u0qnjj" path="res://assets/sprites/items/sword/sword.png" id="11_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://ddj8ydl7752sm" path="res://assets/sprites/items/shotgun/SHORTGUN.png" id="12_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://mvvf0w1c8yxw" path="res://scenes/ship.tscn" id="13_trceg"]
-[ext_resource type="Script" uid="uid://d16nr5pkevxbd" path="res://scripts/wave_individual.gd" id="15_jkv2x"]
-[ext_resource type="Script" uid="uid://boey8mu0r4f6h" path="res://scripts/enemy_cluster_details.gd" id="16_muem4"]
-[ext_resource type="PackedScene" uid="uid://cby80ld3kt4qv" path="res://scenes/basic_charge_enemy.tscn" id="17_dp3eg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jbj1t"]
 texture = ExtResource("3_jkv2x")
@@ -509,17 +506,8 @@ _data = {
 &"finish": SubResource("Animation_choun")
 }
 
-[sub_resource type="Resource" id="Resource_0ld40"]
-script = ExtResource("16_muem4")
-count = 3
-position = Vector2(123, 123)
-duration = 1.0
-metadata/_custom_type_script = "uid://boey8mu0r4f6h"
-
 [node name="Root" type="Node2D" unique_id=41528828]
 script = ExtResource("1_0wfyh")
-
-[node name="Enemy" parent="." unique_id=137243453 instance=ExtResource("17_dp3eg")]
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=996403099]
 z_index = -2
@@ -541,7 +529,7 @@ volume_db = -5.899
 bus = &"Sound Effects"
 
 [node name="ship" parent="." unique_id=198971558 instance=ExtResource("13_trceg")]
-position = Vector2(-416, 171)
+position = Vector2(-390, 171)
 
 [node name="player" parent="." unique_id=2018141324 instance=ExtResource("1_o5qli")]
 position = Vector2(335, 186)
@@ -556,6 +544,7 @@ position_smoothing_enabled = true
 [node name="UI" type="CanvasLayer" parent="." unique_id=767277827]
 
 [node name="Inventory" parent="UI" unique_id=1607622581 instance=ExtResource("3_sugp2")]
+mouse_filter = 2
 
 [node name="Money" type="Label" parent="UI" unique_id=679553885]
 unique_name_in_owner = true
@@ -585,6 +574,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="ColorRect" type="ColorRect" parent="Startingmenu/Control" unique_id=943310213]
 material = SubResource("ShaderMaterial_o6xl0")
@@ -594,6 +584,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="ColorRect2" type="ColorRect" parent="Startingmenu/Control" unique_id=1988476085]
 layout_mode = 1
@@ -602,6 +593,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 0.5686275)
 
 [node name="Label" type="Label" parent="Startingmenu/Control" unique_id=1222772519]
@@ -625,7 +617,7 @@ offset_bottom = 151.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("5_tbgi4")
 theme_override_font_sizes/font_size = 10
-text = "Any 4"
+text = "Any 2"
 horizontal_alignment = 1
 
 [node name="StarterWeapons" type="Panel" parent="Startingmenu/Control" unique_id=1732335035]
@@ -635,13 +627,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -173.0
+offset_left = -140.0
 offset_top = -37.0
-offset_right = 173.0
+offset_right = 140.0
 offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 1
 script = ExtResource("7_85g3d")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Startingmenu/Control/StarterWeapons" unique_id=1176122516]
@@ -691,7 +684,7 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="Startingmenu/Control/StarterWeapons/HBoxContainer/Dagger" unique_id=372434439]
+[node name="Label" type="Label" parent="Startingmenu/Control/StarterWeapons/HBoxContainer/Dagger" unique_id=372434439]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -720,7 +713,7 @@ texture = ExtResource("8_tipki")
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="Startingmenu/Control/StarterWeapons/HBoxContainer/Sword" unique_id=1016337356]
+[node name="Label" type="Label" parent="Startingmenu/Control/StarterWeapons/HBoxContainer/Sword" unique_id=1016337356]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -762,7 +755,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("12_eb6dy")
 
-[node name="Label4" type="Label" parent="Startingmenu/Control/StarterWeapons/HBoxContainer/Shotgun" unique_id=91497684]
+[node name="Label" type="Label" parent="Startingmenu/Control/StarterWeapons/HBoxContainer/Shotgun" unique_id=91497684]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -772,30 +765,6 @@ grow_horizontal = 2
 theme_override_fonts/font = ExtResource("5_tbgi4")
 theme_override_font_sizes/font_size = 10
 text = "Shotgun"
-horizontal_alignment = 1
-
-[node name="Empty3" type="Button" parent="Startingmenu/Control/StarterWeapons/HBoxContainer" unique_id=839280086]
-custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Startingmenu/Control/StarterWeapons/HBoxContainer/Empty3" unique_id=1923079851]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label5" type="Label" parent="Startingmenu/Control/StarterWeapons/HBoxContainer/Empty3" unique_id=771787711]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 5.0
-offset_bottom = 15.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("5_tbgi4")
-theme_override_font_sizes/font_size = 10
-text = "Dagger"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Startingmenu/Control" unique_id=232130963]
@@ -883,13 +852,6 @@ theme_override_fonts/font = ExtResource("5_tbgi4")
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="WaveIndividual" type="Node2D" parent="." unique_id=114225683]
-script = ExtResource("15_jkv2x")
-enemy_clusters = Dictionary[PackedScene, ExtResource("16_muem4")]({
-ExtResource("17_dp3eg"): SubResource("Resource_0ld40")
-})
-metadata/_custom_type_script = "uid://d16nr5pkevxbd"
 
 [connection signal="pressed" from="Startingmenu/Control/StarterWeapons/HBoxContainer/Pistol" to="Startingmenu/Control/StarterWeapons" method="_on_pistol_pressed"]
 [connection signal="pressed" from="Startingmenu/Control/StarterWeapons/HBoxContainer/Dagger" to="Startingmenu/Control/StarterWeapons" method="_on_dagger_pressed"]

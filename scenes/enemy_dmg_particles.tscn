@@ -39,12 +39,13 @@ func _ready() -> void:
 "
 
 [node name="GPUParticles2D" type="GPUParticles2D" unique_id=1929464463]
+z_index = 1
 emitting = false
 amount = 16
 texture = ExtResource("1_lkwsm")
 lifetime = 1.5
 one_shot = true
-speed_scale = 1.9100000000000001
+speed_scale = 1.91
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_tfgyx")
 script = SubResource("GDScript_xa4fn")

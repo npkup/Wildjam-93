@@ -7,23 +7,27 @@ var player : Player
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		body.set_collision_layer_value(Global.get_collision_layer_by_name("Main"), false)
-		body.set_collision_layer_value(Global.get_collision_layer_by_name("Ship"), true)
-		body.set_collision_mask_value(Global.get_collision_layer_by_name("Main"), false)
-		body.set_collision_mask_value(Global.get_collision_layer_by_name("Ship"), true)
+		body.velocity.x = -100
+		body.set_collision_layer_value(1, false)
+		body.set_collision_layer_value(2, true)
+		body.set_collision_mask_value(1, false)
+		body.set_collision_mask_value(2, true)
 		$AudioStreamPlayer2D.play()
 		$AnimatableBody2D/CollisionShape2D.set_deferred("disabled",false)
+		$CollisionShape2D.set_deferred("disabled", true)
 		await get_tree().create_timer(1).timeout
 		player = body
 		moving = true
+		await get_tree().create_timer(7).timeout
+		$Node._start_waves()
 
 
-func _on_body_exited(body: Node2D) -> void:
-	if body is Player:
-		body.set_collision_layer_value(Global.get_collision_layer_by_name("Main"), true)
-		body.set_collision_layer_value(Global.get_collision_layer_by_name("Ship"), false)
-		body.set_collision_mask_value(Global.get_collision_layer_by_name("Main"), true)
-		body.set_collision_mask_value(Global.get_collision_layer_by_name("Ship"), false)
+func _on_body_exited(_body: Node2D) -> void:
+	pass#if body is Player:
+		#body.set_collision_layer_value(Global.get_collision_layer_by_name("Main"), true)
+		#body.set_collision_layer_value(Global.get_collision_layer_by_name("Ship"), false)
+		#body.set_collision_mask_value(Global.get_collision_layer_by_name("Main"), true)
+		#body.set_collision_mask_value(Global.get_collision_layer_by_name("Ship"), false)
 
 func _physics_process(delta: float) -> void:
 	if moving:

@@ -14,7 +14,10 @@ radius = 166.0
 [node name="Enemy" type="CharacterBody2D" unique_id=137243453 node_paths=PackedStringArray("damage_box_area2D", "hitbox_shape", "animated_sprite")]
 collision_layer = 4
 collision_mask = 4
+motion_mode = 1
 script = ExtResource("1_k4wpx")
+health = 40
+max_health = 40
 damage_box_area2D = NodePath("Area2D")
 hitbox_shape = NodePath("CollisionShape2D")
 animated_sprite = NodePath("AnimatedSprite2D")
@@ -34,15 +37,23 @@ debug_color = Color(0.9599156, 0, 0.52166337, 0.41960785)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=136468874]
 
 [node name="Detection_range" type="Area2D" parent="." unique_id=1099335934]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_range" unique_id=1082721411]
 shape = SubResource("CircleShape2D_k4wpx")
 
 [node name="idle_direction_changing_timer" type="Timer" parent="." unique_id=1030635416]
+autostart = true
 
 [node name="alertparticle" parent="." unique_id=830079781 instance=ExtResource("2_5ir21")]
 position = Vector2(0, -15)
 local_coords = true
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=737926462]
+position = Vector2(-1, 0)
+color = Color(1, 0, 0.016666412, 1)
+polygon = PackedVector2Array(-9, -10, 11, -10, 11, 10, -9, 10)
 
 [connection signal="body_entered" from="Detection_range" to="." method="_on_detection_range_body_entered"]
 [connection signal="timeout" from="idle_direction_changing_timer" to="." method="_on_idle_direction_changing_timer_timeout"]

@@ -57,8 +57,6 @@ func _physics_process(delta: float) -> void:
 		up_down_direction = Vector2(left_right_direction, up_down_direction).normalized().y
 		left_right_direction = Vector2(left_right_direction, up_down_direction).normalized().x
 		
-		if Input.is_action_just_pressed("debug"):
-			$"../WaveIndividual".start_wave()
 		
 		if Input.is_action_pressed("attack") and attack_cooldown_timer == 0:
 			$AnimationPlayer.play("RESET")
@@ -75,7 +73,7 @@ func _physics_process(delta: float) -> void:
 					attack_cooldown_timer = $AnimationPlayer.get_animation("pistol").length / $AnimationPlayer.speed_scale
 				Global.items.DAGGER:
 					$AnimationPlayer.play("dagger")
-					$Marker2D/EnemyHurter.damage = 15
+					$Marker2D/EnemyHurter.damage = 20
 					$Marker2D/EnemyHurter.impact_direction_degrees = $Marker2D.global_rotation_degrees
 					attack_cooldown_timer = $AnimationPlayer.get_animation("pistol").length / $AnimationPlayer.speed_scale
 					dagger_sound.play()
@@ -102,7 +100,7 @@ func _physics_process(delta: float) -> void:
 					attack_cooldown_timer = $AnimationPlayer.get_animation("shotgun").length / $AnimationPlayer.speed_scale
 				Global.items.SWORD:
 					$AnimationPlayer.play("sword")
-					$Marker2D/EnemyHurter.damage = 50
+					$Marker2D/EnemyHurter.damage = 60
 					$Marker2D/EnemyHurter.impact_direction_degrees = $Marker2D.global_rotation_degrees
 					$Node2D/sword.pitch_scale = randf_range(0.96, 1.04)
 					attack_cooldown_timer = $AnimationPlayer.get_animation("sword").length / $AnimationPlayer.speed_scale
@@ -140,7 +138,6 @@ func _physics_process(delta: float) -> void:
 		elif !$Marker2D.global_rotation_degrees > 90 or !$Marker2D.global_rotation_degrees < -90:
 			if perpendicular_weapon:
 				weapon_target_rotation_degrees = 90
-				print("perpendicular")
 			else:
 				weapon_target_rotation_degrees = 0
 			weapon_sprite.flip_h = false

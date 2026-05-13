@@ -2,12 +2,80 @@
 
 [ext_resource type="Script" uid="uid://3l4y47o6mwg6" path="res://scripts/ship.gd" id="1_q631a"]
 [ext_resource type="AudioStream" uid="uid://d3ny3o78t2gks" path="res://assets/sounds/ship_horn.mp3" id="2_2gnfn"]
+[ext_resource type="PackedScene" uid="uid://biwii1e8f6cl7" path="res://scenes/wave_sequence.tscn" id="3_3m36u"]
+[ext_resource type="Script" uid="uid://d16nr5pkevxbd" path="res://scripts/wave_individual.gd" id="4_8qiel"]
+[ext_resource type="Script" uid="uid://k8dkjhmllfr3" path="res://scripts/wave_item.gd" id="5_itrim"]
+[ext_resource type="Script" uid="uid://boey8mu0r4f6h" path="res://scripts/enemy_cluster_details.gd" id="6_bseor"]
+[ext_resource type="PackedScene" uid="uid://cby80ld3kt4qv" path="res://scenes/basic_charge_enemy.tscn" id="7_tlr80"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_03b2l"]
-size = Vector2(712, 360)
+size = Vector2(681, 360)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2gnfn"]
 size = Vector2(31, 375)
+
+[sub_resource type="Resource" id="Resource_03y04"]
+script = ExtResource("6_bseor")
+count = 1
+duration = 4.0
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_48mkp"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_03y04")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_tbq4g"]
+script = ExtResource("6_bseor")
+count = 2
+position = Vector2(0, 130)
+duration = 7.0
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_mx31c"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_tbq4g")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_3m36u"]
+script = ExtResource("6_bseor")
+count = 1
+position = Vector2(-250, 0)
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_8qiel"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_3m36u")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_itrim"]
+script = ExtResource("6_bseor")
+count = 2
+position = Vector2(300, 0)
+duration = 5.0
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_bseor"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_itrim")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_tlr80"]
+script = ExtResource("6_bseor")
+count = 2
+position = Vector2(300, 300)
+duration = 5.0
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_fs4we"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_tlr80")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
 
 [node name="Area2D" type="Area2D" unique_id=198971558]
 collision_layer = 0
@@ -22,7 +90,7 @@ offset_bottom = 194.0
 color = Color(0.34, 0.19935334, 0.0918, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=4840241]
-position = Vector2(2, 2)
+position = Vector2(-13.5, 2)
 shape = SubResource("RectangleShape2D_03b2l")
 
 [node name="AnimatableBody2D" type="StaticBody2D" parent="." unique_id=1277925928]
@@ -47,6 +115,21 @@ disabled = true
 position = Vector2(-349, 1)
 stream = ExtResource("2_2gnfn")
 panning_strength = 1.88
+
+[node name="Node" parent="." unique_id=1956967542 node_paths=PackedStringArray("wave_nodes_array") instance=ExtResource("3_3m36u")]
+wave_nodes_array = [NodePath("WaveIndividual"), NodePath("WaveIndividual2")]
+
+[node name="WaveIndividual" type="Node2D" parent="Node" unique_id=2113457785]
+script = ExtResource("4_8qiel")
+enemy_clusters = Array[ExtResource("5_itrim")]([SubResource("Resource_48mkp"), SubResource("Resource_mx31c"), SubResource("Resource_8qiel"), SubResource("Resource_bseor")])
+max_wave_duration = 40.0
+metadata/_custom_type_script = "uid://d16nr5pkevxbd"
+
+[node name="WaveIndividual2" type="Node2D" parent="Node" unique_id=2086843610]
+script = ExtResource("4_8qiel")
+enemy_clusters = Array[ExtResource("5_itrim")]([SubResource("Resource_fs4we")])
+max_wave_duration = 10.0
+metadata/_custom_type_script = "uid://d16nr5pkevxbd"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
