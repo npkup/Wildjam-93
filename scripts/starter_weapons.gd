@@ -5,6 +5,7 @@ var max_choosable  : int = 4
 
 func _ready() -> void:
 	$"..".show()
+	get_tree().paused = true
 
 func _process(_delta: float) -> void:
 	#$"../VBoxContainer/Confirm".disabled = !weapons_chosen.size() >= max_choosable
@@ -28,7 +29,7 @@ func start_game() -> void:
 	$"../AnimationPlayer".play("finish")
 	await get_tree().create_timer(1).timeout
 	$"../../../player".player_enabled = true
-	
+	get_tree().paused = false
 	for i in 5 - weapons_chosen.size():
 		weapons_chosen.append(Global.items.EMPTY)
 	

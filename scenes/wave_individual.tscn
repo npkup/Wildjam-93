@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cy5q508c6yex0"]
+
+[ext_resource type="Script" uid="uid://d16nr5pkevxbd" path="res://scripts/wave_individual.gd" id="1_tnkb3"]
+
+[node name="Node2D" type="Node2D" unique_id=1843104872]
+script = ExtResource("1_tnkb3")

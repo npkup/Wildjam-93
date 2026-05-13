@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bbcetvuwcwhr"]
+
+[ext_resource type="Texture2D" uid="uid://ch2g1y5t0ld7q" path="res://assets/sprites/particles/alert.png" id="1_70mee"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dgahm"]
+particles_animation = true
+particles_anim_h_frames = 16
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lxgso"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="alertparticle" type="GPUParticles2D" unique_id=830079781]
+material = SubResource("CanvasItemMaterial_dgahm")
+emitting = false
+amount = 1
+texture = ExtResource("1_70mee")
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_lxgso")

@@ -14,7 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://br3ywp8u0qnjj" path="res://assets/sprites/items/sword/sword.png" id="11_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://ddj8ydl7752sm" path="res://assets/sprites/items/shotgun/SHORTGUN.png" id="12_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://mvvf0w1c8yxw" path="res://scenes/ship.tscn" id="13_trceg"]
-[ext_resource type="PackedScene" uid="uid://cgen5ie661h06" path="res://scenes/enemybasic.tscn" id="14_a8y0u"]
+[ext_resource type="Script" uid="uid://d16nr5pkevxbd" path="res://scripts/wave_individual.gd" id="15_jkv2x"]
+[ext_resource type="Script" uid="uid://boey8mu0r4f6h" path="res://scripts/enemy_cluster_details.gd" id="16_muem4"]
+[ext_resource type="PackedScene" uid="uid://cby80ld3kt4qv" path="res://scenes/basic_charge_enemy.tscn" id="17_dp3eg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jbj1t"]
 texture = ExtResource("3_jkv2x")
@@ -507,13 +509,17 @@ _data = {
 &"finish": SubResource("Animation_choun")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkv2x"]
-size = Vector2(24, 24)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbj1t"]
+[sub_resource type="Resource" id="Resource_0ld40"]
+script = ExtResource("16_muem4")
+count = 3
+position = Vector2(123, 123)
+duration = 1.0
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
 
 [node name="Root" type="Node2D" unique_id=41528828]
 script = ExtResource("1_0wfyh")
+
+[node name="Enemy" parent="." unique_id=137243453 instance=ExtResource("17_dp3eg")]
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=996403099]
 z_index = -2
@@ -569,6 +575,7 @@ offset_bottom = 64.0
 step = 1.0
 
 [node name="Startingmenu" type="CanvasLayer" parent="." unique_id=1019860013]
+process_mode = 3
 
 [node name="Control" type="Control" parent="Startingmenu" unique_id=1692122880]
 visible = false
@@ -877,18 +884,12 @@ theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CharacterBody2D" parent="." unique_id=409557503 node_paths=PackedStringArray("damage_box_area2D", "hitbox_shape") instance=ExtResource("14_a8y0u")]
-position = Vector2(230, 242)
-damage_box_area2D = NodePath("Area2D")
-hitbox_shape = NodePath("CollisionShape2D")
-
-[node name="Area2D" type="Area2D" parent="CharacterBody2D" unique_id=929522091]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D" unique_id=1842524540]
-shape = SubResource("RectangleShape2D_jkv2x")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=634842929]
-shape = SubResource("RectangleShape2D_jbj1t")
+[node name="WaveIndividual" type="Node2D" parent="." unique_id=114225683]
+script = ExtResource("15_jkv2x")
+enemy_clusters = Dictionary[PackedScene, ExtResource("16_muem4")]({
+ExtResource("17_dp3eg"): SubResource("Resource_0ld40")
+})
+metadata/_custom_type_script = "uid://d16nr5pkevxbd"
 
 [connection signal="pressed" from="Startingmenu/Control/StarterWeapons/HBoxContainer/Pistol" to="Startingmenu/Control/StarterWeapons" method="_on_pistol_pressed"]
 [connection signal="pressed" from="Startingmenu/Control/StarterWeapons/HBoxContainer/Dagger" to="Startingmenu/Control/StarterWeapons" method="_on_dagger_pressed"]

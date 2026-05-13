@@ -23,6 +23,16 @@ var health : int = 100:
 			$playerdmg.play("player_heal")
 		else:
 			$playerdmg.play("player_hurt")
+		
+		if value <= 0:
+			$playerdmg.play("death")
+			player_enabled = false
+			Engine.time_scale = 0.5
+			$AnimatedSprite2D.stop()
+			await $playerdmg.animation_finished
+			get_tree().reload_current_scene()
+			Engine.time_scale = 1
+		
 		health = value
 		$"../UI/healthbar".value = health
 var max_health : int = 100
@@ -47,6 +57,8 @@ func _physics_process(delta: float) -> void:
 		up_down_direction = Vector2(left_right_direction, up_down_direction).normalized().y
 		left_right_direction = Vector2(left_right_direction, up_down_direction).normalized().x
 		
+		if Input.is_action_just_pressed("debug"):
+			$"../WaveIndividual".start_wave()
 		
 		if Input.is_action_pressed("attack") and attack_cooldown_timer == 0:
 			$AnimationPlayer.play("RESET")

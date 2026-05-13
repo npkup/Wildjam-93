@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cby80ld3kt4qv"]
+
+[ext_resource type="Script" uid="uid://cayx7l3ef8ljf" path="res://scripts/basic_move_enemy.gd" id="1_k4wpx"]
+[ext_resource type="PackedScene" uid="uid://bbcetvuwcwhr" path="res://scenes/alertparticles.tscn" id="2_5ir21"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ir21"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dgahm"]
+size = Vector2(24, 24)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k4wpx"]
+radius = 166.0
+
+[node name="Enemy" type="CharacterBody2D" unique_id=137243453 node_paths=PackedStringArray("damage_box_area2D", "hitbox_shape", "animated_sprite")]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_k4wpx")
+damage_box_area2D = NodePath("Area2D")
+hitbox_shape = NodePath("CollisionShape2D")
+animated_sprite = NodePath("AnimatedSprite2D")
+metadata/_custom_type_script = "uid://cmx0f13pd6gf8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=381275468]
+shape = SubResource("RectangleShape2D_5ir21")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=914292646]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=541728620]
+shape = SubResource("RectangleShape2D_dgahm")
+debug_color = Color(0.9599156, 0, 0.52166337, 0.41960785)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=136468874]
+
+[node name="Detection_range" type="Area2D" parent="." unique_id=1099335934]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_range" unique_id=1082721411]
+shape = SubResource("CircleShape2D_k4wpx")
+
+[node name="idle_direction_changing_timer" type="Timer" parent="." unique_id=1030635416]
+
+[node name="alertparticle" parent="." unique_id=830079781 instance=ExtResource("2_5ir21")]
+position = Vector2(0, -15)
+local_coords = true
+
+[connection signal="body_entered" from="Detection_range" to="." method="_on_detection_range_body_entered"]
+[connection signal="timeout" from="idle_direction_changing_timer" to="." method="_on_idle_direction_changing_timer_timeout"]
