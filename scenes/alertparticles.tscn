@@ -20,4 +20,5 @@ emitting = false
 amount = 1
 texture = ExtResource("1_70mee")
 one_shot = true
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_lxgso")

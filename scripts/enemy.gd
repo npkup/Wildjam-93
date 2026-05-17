@@ -8,12 +8,15 @@ class_name Enemy extends CharacterBody2D
 @export var damage_box_area2D : Area2D
 @export var hitbox_shape : CollisionShape2D
 @export var animated_sprite : AnimatedSprite2D
+@export var other_visuals : Array[Node2D]
 
 var player : Player
 var alive : bool = true
 var frictioning : bool = false
+var enemy_movement_enabled : bool = false
 
 var dmg_particle : PackedScene = preload("res://scenes/enemy_dmg_particles.tscn")
+var dead_particle : PackedScene = preload("res://scenes/enemy_dead_particles.tscn")
 
 func _ready() -> void:
 	damage_box_area2D.body_entered.connect(_on_body_entered)
@@ -21,6 +24,22 @@ func _ready() -> void:
 	animated_sprite.reparent(self, true)
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	alive = health > 0
+	for visual in other_visuals:
+		visual.hide()
+	var spawn_alert : Sprite2D = Sprite2D.new()
+	damage_box_area2D.set_deferred("disabled", true)
+	spawn_alert.texture = preload("res://assets/sprites/particles/enemy_spawn_alert.png")
+	add_child(spawn_alert)
+	for i in 5:
+		await get_tree().create_timer(0.1).timeout
+		spawn_alert.hide()
+		await get_tree().create_timer(0.1).timeout
+		spawn_alert.show()
+	spawn_alert.queue_free()
+	enemy_movement_enabled = true
+	for visual in other_visuals:
+		visual.show()
+	damage_box_area2D.set_deferred("disabled", false)
 
 func take_damage(damage_taken : int, impact_direction_degrees : float = 0.0) -> void:
 	health -= damage_taken
@@ -42,10 +61,15 @@ func take_damage(damage_taken : int, impact_direction_degrees : float = 0.0) -> 
 		unflash_tween.tween_property(self, "modulate", Color(1, 1, 1, 1), 0.2)
 	elif alive:
 		alive = false
+		enemy_movement_enabled = false
 		var scale_tween : Tween = create_tween()
 		scale_tween.set_ease(Tween.EASE_IN_OUT)
 		scale_tween.tween_property(self, "scale", Vector2(0, 0), 0.3)
-		await get_tree().create_timer(0.3).timeout
+		var dead : GPUParticles2D = dead_particle.instantiate()
+		add_sibling(dead)
+		dead.global_position = global_position
+		dead.emitting = true
+		await get_tree().create_timer(dead.lifetime / dead.speed_scale).timeout
 		queue_free()
 
 func _physics_process(_delta: float) -> void:
@@ -53,9 +77,9 @@ func _physics_process(_delta: float) -> void:
 
 func _on_body_entered(body : Node2D) -> void:
 	
-	if body is Player:
+	if body is Player and enemy_movement_enabled:
 		body.health -= damage
 		player = body
-	if body is Enemy:
+	if body is Enemy and enemy_movement_enabled:
 		var push_dir : Vector2 = global_position.direction_to(body.global_position)
 		velocity = push_dir * -30

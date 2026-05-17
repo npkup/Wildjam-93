@@ -47,5 +47,6 @@ lifetime = 1.5
 one_shot = true
 speed_scale = 1.91
 explosiveness = 1.0
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_tfgyx")
 script = SubResource("GDScript_xa4fn")

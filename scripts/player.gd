@@ -66,6 +66,7 @@ func _physics_process(delta: float) -> void:
 					var bullet : Bullet = pistol_bullet.instantiate()
 					bullet.global_rotation = $Marker2D.global_rotation
 					bullet.global_position = weapon_sprite.global_position
+					bullet.player = self
 					add_sibling(bullet)
 					gunshot_pistol.play()
 					gunshot_pistol.pitch_scale = randf_range(0.96, 1.04)
@@ -85,6 +86,9 @@ func _physics_process(delta: float) -> void:
 					bullet1.global_position = weapon_sprite.global_position
 					bullet2.global_position = weapon_sprite.global_position
 					bullet3.global_position = weapon_sprite.global_position
+					bullet1.player = self
+					bullet2.player = self
+					bullet3.player = self
 					bullet1.rotation_degrees = $Marker2D.rotation_degrees - 15
 					add_sibling(bullet1)
 					bullet2.rotation_degrees = $Marker2D.rotation_degrees

@@ -60,8 +60,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -251.0
-offset_top = -50.0
+offset_left = -158.0
+offset_top = -37.0
 offset_right = -8.0
 offset_bottom = -8.0
 grow_horizontal = 0
@@ -69,7 +69,7 @@ grow_vertical = 0
 scale = Vector2(1e-05, 1e-05)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("2_bo5j5")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 10
 text = "Proceed to next wave"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control" unique_id=609710929]

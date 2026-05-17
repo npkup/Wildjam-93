@@ -13,7 +13,7 @@ func _on_body_entered(body: Node2D) -> void:
 		body.set_collision_mask_value(1, false)
 		body.set_collision_mask_value(2, true)
 		$AudioStreamPlayer2D.play()
-		$AnimatableBody2D/CollisionShape2D.set_deferred("disabled",false)
+		$StaticBody2D/CollisionShape2D.set_deferred("disabled",false)
 		$CollisionShape2D.set_deferred("disabled", true)
 		await get_tree().create_timer(1).timeout
 		player = body

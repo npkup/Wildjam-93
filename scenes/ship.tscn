@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://d16nr5pkevxbd" path="res://scripts/wave_individual.gd" id="4_8qiel"]
 [ext_resource type="Script" uid="uid://k8dkjhmllfr3" path="res://scripts/wave_item.gd" id="5_itrim"]
 [ext_resource type="Script" uid="uid://boey8mu0r4f6h" path="res://scripts/enemy_cluster_details.gd" id="6_bseor"]
+[ext_resource type="PackedScene" uid="uid://cvo044l0k6hhh" path="res://scenes/slow_enemy.tscn" id="7_8qiel"]
 [ext_resource type="PackedScene" uid="uid://cby80ld3kt4qv" path="res://scenes/basic_charge_enemy.tscn" id="7_tlr80"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_03b2l"]
@@ -16,38 +17,38 @@ size = Vector2(31, 375)
 
 [sub_resource type="Resource" id="Resource_03y04"]
 script = ExtResource("6_bseor")
-count = 1
+count = 2
 duration = 4.0
 metadata/_custom_type_script = "uid://boey8mu0r4f6h"
 
 [sub_resource type="Resource" id="Resource_48mkp"]
 script = ExtResource("5_itrim")
-enemy_scene = ExtResource("7_tlr80")
+enemy_scene = ExtResource("7_8qiel")
 cluster_details = SubResource("Resource_03y04")
 metadata/_custom_type_script = "uid://k8dkjhmllfr3"
 
 [sub_resource type="Resource" id="Resource_tbq4g"]
 script = ExtResource("6_bseor")
-count = 2
+count = 1
 position = Vector2(0, 130)
 duration = 7.0
 metadata/_custom_type_script = "uid://boey8mu0r4f6h"
 
 [sub_resource type="Resource" id="Resource_mx31c"]
 script = ExtResource("5_itrim")
-enemy_scene = ExtResource("7_tlr80")
+enemy_scene = ExtResource("7_8qiel")
 cluster_details = SubResource("Resource_tbq4g")
 metadata/_custom_type_script = "uid://k8dkjhmllfr3"
 
 [sub_resource type="Resource" id="Resource_3m36u"]
 script = ExtResource("6_bseor")
-count = 1
+count = 3
 position = Vector2(-250, 0)
 metadata/_custom_type_script = "uid://boey8mu0r4f6h"
 
 [sub_resource type="Resource" id="Resource_8qiel"]
 script = ExtResource("5_itrim")
-enemy_scene = ExtResource("7_tlr80")
+enemy_scene = ExtResource("7_8qiel")
 cluster_details = SubResource("Resource_3m36u")
 metadata/_custom_type_script = "uid://k8dkjhmllfr3"
 
@@ -60,14 +61,14 @@ metadata/_custom_type_script = "uid://boey8mu0r4f6h"
 
 [sub_resource type="Resource" id="Resource_bseor"]
 script = ExtResource("5_itrim")
-enemy_scene = ExtResource("7_tlr80")
+enemy_scene = ExtResource("7_8qiel")
 cluster_details = SubResource("Resource_itrim")
 metadata/_custom_type_script = "uid://k8dkjhmllfr3"
 
 [sub_resource type="Resource" id="Resource_tlr80"]
 script = ExtResource("6_bseor")
 count = 2
-position = Vector2(300, 300)
+position = Vector2(300, 0)
 duration = 5.0
 metadata/_custom_type_script = "uid://boey8mu0r4f6h"
 
@@ -93,23 +94,27 @@ color = Color(0.34, 0.19935334, 0.0918, 1)
 position = Vector2(-13.5, 2)
 shape = SubResource("RectangleShape2D_03b2l")
 
-[node name="AnimatableBody2D" type="StaticBody2D" parent="." unique_id=1277925928]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1277925928]
 collision_layer = 7
 collision_mask = 7
 
-[node name="Polygon2D" type="Polygon2D" parent="AnimatableBody2D" unique_id=497554065]
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" unique_id=497554065]
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(360, 168, 358, 193, -355, 192, -356, -189, 362, -188, 360, -163, -325, -158, -323, 165)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatableBody2D" unique_id=1538908326]
-polygon = PackedVector2Array(-321, -159, 361, -164, 362, -188, -355, -189, -352, 189, 357, 193, 360, 171, -323, 165)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1538908326]
+polygon = PackedVector2Array(-157, -160, 361, -164, 362, -188, -355, -189, -352, 189, 357, 193, 360, 171, -323, 165, -321.48172, -80.95569, -156, -81)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatableBody2D" unique_id=1606433063]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StaticBody2D" unique_id=1606433063]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=305641181]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=305641181]
 position = Vector2(376.5, 2.5)
 shape = SubResource("RectangleShape2D_2gnfn")
 disabled = true
+
+[node name="Polygon2D2" type="Polygon2D" parent="StaticBody2D" unique_id=1774205306]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-326, -158, -155, -160, -155, -81, -325, -82)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=229359432]
 position = Vector2(-349, 1)

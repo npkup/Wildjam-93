@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cvo044l0k6hhh"]
+
+[ext_resource type="Script" uid="uid://bfbttkvsv5sxt" path="res://scripts/slow_enemy.gd" id="1_ukqrj"]
+[ext_resource type="PackedScene" uid="uid://bbcetvuwcwhr" path="res://scenes/alertparticles.tscn" id="2_ru6l0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ru6l0"]
+size = Vector2(16, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8mbi"]
+size = Vector2(16, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ru6l0"]
+radius = 128.76335
+
+[node name="Enemy" type="CharacterBody2D" unique_id=2043674558 node_paths=PackedStringArray("damage_box_area2D", "hitbox_shape", "animated_sprite", "other_visuals")]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_ukqrj")
+health = 80
+max_health = 80
+damage_box_area2D = NodePath("DamageBox")
+hitbox_shape = NodePath("CollisionShape2D")
+animated_sprite = NodePath("AnimatedSprite2D")
+other_visuals = [NodePath("Polygon2D")]
+metadata/_custom_type_script = "uid://cmx0f13pd6gf8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1320350060]
+shape = SubResource("RectangleShape2D_ru6l0")
+
+[node name="DamageBox" type="Area2D" parent="." unique_id=1544239736]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBox" unique_id=674322161]
+shape = SubResource("RectangleShape2D_k8mbi")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1443397198]
+color = Color(0.04000002, 0.7760002, 1, 1)
+polygon = PackedVector2Array(-8, 15, 8, 15, 8, -15, -8, -15)
+
+[node name="alertparticle" parent="." unique_id=830079781 instance=ExtResource("2_ru6l0")]
+position = Vector2(0, -25)
+
+[node name="detection_range" type="Area2D" parent="." unique_id=1825362504]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_range" unique_id=1529781724]
+shape = SubResource("CircleShape2D_ru6l0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1510978795]
+
+[connection signal="body_entered" from="detection_range" to="." method="_on_detection_range_body_entered"]
