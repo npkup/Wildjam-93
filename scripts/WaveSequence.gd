@@ -12,10 +12,15 @@ func _start_waves() -> void:
 		wave.start_wave()
 		wave_running = true
 		await wave.wave_ended
+		$"../Shop/Shop".load_random_weapons()
 		wave_running = false
+		$"..".player.health = 100
 		$CanvasLayer/Control/AnimationPlayer.play("wave_proceed_apprear")
 		await next_wave
 		$CanvasLayer/Control/AnimationPlayer.play_backwards("wave_proceed_apprear")
+	$"../CanvasLayer/Control/AnimationPlayer".play("roomtransition")
+	await get_tree().create_timer(0.5).timeout
+	get_tree().change_scene_to_file("res://scenes/credits.tscn")
 
 func _process(_delta: float) -> void:
 	$CanvasLayer/Control/Button.visible = can_proceed_to_next_wave

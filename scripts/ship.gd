@@ -22,7 +22,7 @@ func _on_body_entered(body: Node2D) -> void:
 		await get_tree().create_timer(1).timeout
 		player = body
 		moving = true
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(7).timeout
 		$Node._start_waves()
 
 
@@ -42,6 +42,9 @@ func _physics_process(delta: float) -> void:
 		velocity.y = move_toward(velocity.y, SPEED_VECTOR.y, delta * 3)
 		global_position += velocity * delta
 		player.global_position += velocity * delta
+		Global.ship_velocity = velocity
+	else:
+		Global.ship_velocity = Vector2.ZERO
 	
 	if shop_interactable and Input.is_action_just_pressed("interact"):
 		$CanvasLayer/Control/AnimationPlayer.play("roomtransition")
@@ -63,7 +66,7 @@ func _physics_process(delta: float) -> void:
 			player.player_enabled = true
 
 func _on_shoparea_body_entered(body: Node2D) -> void:
-	if body is Player:# and !$Node.wave_running:
+	if body is Player and !$Node.wave_running:
 		shop_interactable = true
 
 func _on_shoparea_body_exited(body: Node2D) -> void:

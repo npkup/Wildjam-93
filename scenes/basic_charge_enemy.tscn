@@ -22,6 +22,8 @@ damage_box_area2D = NodePath("Area2D")
 hitbox_shape = NodePath("CollisionShape2D")
 animated_sprite = NodePath("AnimatedSprite2D")
 other_visuals = [NodePath("Polygon2D")]
+coins_dropped_min = 7
+coins_dropped_max = 14
 metadata/_custom_type_script = "uid://cmx0f13pd6gf8"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=381275468]

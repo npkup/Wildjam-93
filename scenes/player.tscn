@@ -452,9 +452,8 @@ shape = SubResource("RectangleShape2D_sgp6g")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=443527110]
 material = SubResource("ShaderMaterial_tuyoq")
 sprite_frames = SubResource("SpriteFrames_3v2ag")
-animation = &"run"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.47621682
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=485629900]
 

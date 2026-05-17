@@ -442,6 +442,8 @@ emitting = false
 amount = 1
 texture = ExtResource("1_j15uc")
 one_shot = true
+fixed_fps = 60
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_7nxw5")
 
 [node name="cloud" type="GPUParticles2D" parent="." unique_id=1146233219]
@@ -450,6 +452,7 @@ amount = 32
 texture = ExtResource("2_84slv")
 one_shot = true
 explosiveness = 1.0
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_m3s2y")
 
 [node name="lines" type="GPUParticles2D" parent="." unique_id=1913297240]
@@ -458,6 +461,7 @@ amount = 32
 texture = ExtResource("3_84slv")
 one_shot = true
 explosiveness = 1.0
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_8lqhf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1727105758]

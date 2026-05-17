@@ -23,6 +23,7 @@ var health : int = 100:
 			$playerdmg.play("player_heal")
 		else:
 			$playerdmg.play("player_hurt")
+			$"../Dmgflash/AnimationPlayer".play("dmg")
 		
 		if value <= 0:
 			$playerdmg.play("death")
@@ -30,7 +31,10 @@ var health : int = 100:
 			Engine.time_scale = 0.5
 			$AnimatedSprite2D.stop()
 			await $playerdmg.animation_finished
-			get_tree().reload_current_scene()
+			$"../UI/Panel".visible = true
+			await $"../UI/Panel/Button".pressed
+			$"../UI/Panel".visible = false
+			Engine.get_main_loop().reload_current_scene()
 			Engine.time_scale = 1
 		
 		health = value
@@ -46,6 +50,7 @@ func _ready() -> void:
 	$"../UI/healthbar".max_value = max_health
 
 func _physics_process(delta: float) -> void:
+	%Money.text = "$" + str(Global.money)
 	if player_enabled:
 		$ProgressBar.value = attack_cooldown_timer
 		$ProgressBar.visible = attack_cooldown_timer > 0
@@ -54,7 +59,7 @@ func _physics_process(delta: float) -> void:
 		var left_right_direction : float = Input.get_axis("left", "right")
 		weapon_sprite.rotation_degrees = lerp(weapon_sprite.rotation_degrees, weapon_target_rotation_degrees, 0.1)
 		
-		%Money.text = "$" + str(Global.money)
+		
 		attack_cooldown_timer -= delta
 		attack_cooldown_timer = clamp(attack_cooldown_timer, 0, INF)
 		up_down_direction = Vector2(left_right_direction, up_down_direction).normalized().y

@@ -48,7 +48,7 @@ func start_game() -> void:
 	Global.inventory_items[2] = weapons_chosen[1]
 	Global.inventory_items[3] = weapons_chosen[2]
 	Global.inventory_items[4] = weapons_chosen[3]
-	#Global.inventory_items[5] = weapons_chosen[4]
+	Global.inventory_items[5] = weapons_chosen[4]
 	$"../..".queue_free()
 
 

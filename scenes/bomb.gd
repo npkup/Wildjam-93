@@ -14,6 +14,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	velocity *= decceleration
 	global_position += velocity * delta
+	global_position += Global.ship_velocity * delta
 
 
 func _on_body_entered(body: Node2D) -> void:

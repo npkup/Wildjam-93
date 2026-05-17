@@ -16,6 +16,7 @@ var player : Player
 var alive : bool = true
 var frictioning : bool = false
 var enemy_movement_enabled : bool = false
+var frozen : bool = true
 
 var dmg_particle : PackedScene = preload("res://scenes/enemy_dmg_particles.tscn")
 var dead_particle : PackedScene = preload("res://scenes/enemy_dead_particles.tscn")
@@ -89,6 +90,8 @@ func take_damage(damage_taken : int, impact_direction_degrees : float = 0.0) -> 
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
+	if frozen:
+		velocity = Vector2.ZERO
 
 func _on_body_entered(body : Node2D) -> void:
 	

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://3l4y47o6mwg6" path="res://scripts/ship.gd" id="1_q631a"]
 [ext_resource type="AudioStream" uid="uid://d3ny3o78t2gks" path="res://assets/sounds/ship_horn.mp3" id="2_2gnfn"]
 [ext_resource type="Texture2D" uid="uid://botkxo2371q5m" path="res://assets/sprites/level/shop.png" id="2_bseor"]
+[ext_resource type="Texture2D" uid="uid://wj1636whkr0f" path="res://assets/sprites/level/ship.png" id="2_vbj2c"]
 [ext_resource type="PackedScene" uid="uid://biwii1e8f6cl7" path="res://scenes/wave_sequence.tscn" id="3_3m36u"]
 [ext_resource type="Script" uid="uid://d16nr5pkevxbd" path="res://scripts/wave_individual.gd" id="4_8qiel"]
 [ext_resource type="Script" uid="uid://k8dkjhmllfr3" path="res://scripts/wave_item.gd" id="5_itrim"]
@@ -11,17 +12,30 @@
 [ext_resource type="PackedScene" uid="uid://cby80ld3kt4qv" path="res://scenes/basic_charge_enemy.tscn" id="7_tlr80"]
 [ext_resource type="PackedScene" uid="uid://nknvyqk5hevd" path="res://scenes/interactpanel.tscn" id="9_itrim"]
 [ext_resource type="Script" uid="uid://b223p5mhqxjqt" path="res://scripts/shop.gd" id="11_48mkp"]
+[ext_resource type="PackedScene" uid="uid://cy5q508c6yex0" path="res://scenes/wave_individual.tscn" id="11_dschd"]
 [ext_resource type="FontFile" uid="uid://dy1w10g1web26" path="res://Pixolletta8px.ttf" id="11_tlr80"]
 [ext_resource type="Texture2D" uid="uid://d1j0tw275t7wp" path="res://assets/sprites/items/pistol/pistol.png" id="12_03y04"]
+[ext_resource type="AudioStream" uid="uid://b8xudad453cvk" path="res://assets/sounds/drop_coin.mp3" id="13_fs4we"]
+[ext_resource type="Texture2D" uid="uid://bnajjs1ved3ae" path="res://assets/sprites/items/lasergun/lazergun.png" id="14_tbq4g"]
+[ext_resource type="Shader" uid="uid://bw7qr8o8kxkpb" path="res://shaders/blur.gdshader" id="15_mx31c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_03b2l"]
-size = Vector2(681, 360)
+size = Vector2(513, 360)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2gnfn"]
-size = Vector2(31, 375)
+size = Vector2(31, 421)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bseor"]
 size = Vector2(166, 66)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dschd"]
+size = Vector2(564, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_83dbu"]
+size = Vector2(20, 444)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbj2c"]
+size = Vector2(177, 75)
 
 [sub_resource type="Resource" id="Resource_03y04"]
 script = ExtResource("6_bseor")
@@ -51,7 +65,7 @@ metadata/_custom_type_script = "uid://k8dkjhmllfr3"
 [sub_resource type="Resource" id="Resource_3m36u"]
 script = ExtResource("6_bseor")
 count = 3
-position = Vector2(-250, 0)
+position = Vector2(-140, 0)
 metadata/_custom_type_script = "uid://boey8mu0r4f6h"
 
 [sub_resource type="Resource" id="Resource_8qiel"]
@@ -77,13 +91,273 @@ metadata/_custom_type_script = "uid://k8dkjhmllfr3"
 script = ExtResource("6_bseor")
 count = 2
 position = Vector2(300, 0)
-duration = 5.0
+duration = 2.0
 metadata/_custom_type_script = "uid://boey8mu0r4f6h"
 
 [sub_resource type="Resource" id="Resource_fs4we"]
 script = ExtResource("5_itrim")
 enemy_scene = ExtResource("7_tlr80")
 cluster_details = SubResource("Resource_tlr80")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_vbj2c"]
+script = ExtResource("6_bseor")
+count = 3
+position = Vector2(-140, 0)
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_dschd"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_vbj2c")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_83dbu"]
+script = ExtResource("6_bseor")
+count = 5
+position = Vector2(300, 0)
+duration = 5.0
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_xifwb"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_8qiel")
+cluster_details = SubResource("Resource_83dbu")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_swuwe"]
+script = ExtResource("6_bseor")
+count = 10
+position = Vector2(300, 0)
+duration = 10.0
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_6vtx4"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_swuwe")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_r5rhe"]
+script = ExtResource("6_bseor")
+count = 5
+position = Vector2(100, -100)
+duration = 3.0
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_nwefg"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_r5rhe")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_08ed0"]
+script = ExtResource("6_bseor")
+count = 10
+position = Vector2(0, 150)
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_7tpya"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_8qiel")
+cluster_details = SubResource("Resource_08ed0")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_q0sdf"]
+script = ExtResource("6_bseor")
+count = 3
+position = Vector2(300, 0)
+duration = 6.0
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_u7rkd"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_q0sdf")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_o1i5q"]
+script = ExtResource("6_bseor")
+count = 10
+position = Vector2(-100, 150)
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_kwpx1"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_o1i5q")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_qy1vx"]
+script = ExtResource("6_bseor")
+count = 2
+position = Vector2(300, -100)
+duration = 10.0
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_ud00f"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_qy1vx")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_rxy3i"]
+script = ExtResource("6_bseor")
+count = 5
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_g7uqr"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_rxy3i")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_10t3h"]
+script = ExtResource("6_bseor")
+count = 7
+position = Vector2(100, -100)
+duration = 3.0
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_re7e4"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_10t3h")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_wrc1v"]
+script = ExtResource("6_bseor")
+count = 12
+position = Vector2(0, 150)
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_qdbuh"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_8qiel")
+cluster_details = SubResource("Resource_wrc1v")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_h75by"]
+script = ExtResource("6_bseor")
+count = 5
+position = Vector2(300, 0)
+duration = 6.0
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_3mg5m"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_h75by")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_k8rhd"]
+script = ExtResource("6_bseor")
+count = 12
+position = Vector2(-100, 150)
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_iuxt1"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_k8rhd")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_od8g6"]
+script = ExtResource("6_bseor")
+count = 3
+position = Vector2(300, -100)
+duration = 10.0
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_vsg0s"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_od8g6")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_3lop3"]
+script = ExtResource("6_bseor")
+count = 7
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_i0rmv"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_3lop3")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_2578s"]
+script = ExtResource("6_bseor")
+count = 14
+position = Vector2(100, -100)
+duration = 3.0
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_8jkn4"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_2578s")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_eiv43"]
+script = ExtResource("6_bseor")
+count = 24
+position = Vector2(0, 150)
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_kbhtu"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_8qiel")
+cluster_details = SubResource("Resource_eiv43")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_tol08"]
+script = ExtResource("6_bseor")
+count = 10
+position = Vector2(300, 0)
+duration = 6.0
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_mvhns"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_tol08")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_r7k5d"]
+script = ExtResource("6_bseor")
+count = 24
+position = Vector2(-100, 150)
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_b7y7k"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_r7k5d")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_rctbi"]
+script = ExtResource("6_bseor")
+count = 6
+position = Vector2(300, -100)
+duration = 10.0
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_8aens"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_rctbi")
+metadata/_custom_type_script = "uid://k8dkjhmllfr3"
+
+[sub_resource type="Resource" id="Resource_mt0yv"]
+script = ExtResource("6_bseor")
+count = 14
+metadata/_custom_type_script = "uid://boey8mu0r4f6h"
+
+[sub_resource type="Resource" id="Resource_7f781"]
+script = ExtResource("5_itrim")
+enemy_scene = ExtResource("7_tlr80")
+cluster_details = SubResource("Resource_mt0yv")
 metadata/_custom_type_script = "uid://k8dkjhmllfr3"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8qiel"]
@@ -155,6 +429,13 @@ _data = {
 &"roomtransition": SubResource("Animation_bseor")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fs4we"]
+shader = ExtResource("15_mx31c")
+shader_parameter/blur_radius = 0.2
+shader_parameter/blur_amount = 2.2230001055925
+shader_parameter/blur_inner = 0.0
+shader_parameter/blur_outer = 0.0
+
 [sub_resource type="Animation" id="Animation_48mkp"]
 length = 0.001
 tracks/0/type = "value"
@@ -180,6 +461,58 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1e-05, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Purchased:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(279, 369)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Purchased/AudioStreamPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_mx31c"]
+resource_name = "puchased"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Purchased:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 2.7, 3),
+"transitions": PackedFloat32Array(-2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(279, 369), Vector2(279, 329), Vector2(279, 329), Vector2(279, 369)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Purchased/AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_tbq4g"]
@@ -209,10 +542,25 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hide_new_weapons_if_slots_full"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mx31c"]
 _data = {
 &"RESET": SubResource("Animation_48mkp"),
+&"puchased": SubResource("Animation_mx31c"),
 &"shopmenu": SubResource("Animation_tbq4g")
 }
 
@@ -221,15 +569,11 @@ collision_layer = 0
 collision_mask = 3
 script = ExtResource("1_q631a")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=219086146]
-offset_left = -362.0
-offset_top = -190.0
-offset_right = 360.0
-offset_bottom = 194.0
-color = Color(0.34, 0.19935334, 0.0918, 1)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=450600253]
+texture = ExtResource("2_vbj2c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=4840241]
-position = Vector2(-13.5, 2)
+position = Vector2(70.5, 2)
 shape = SubResource("RectangleShape2D_03b2l")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1277925928]
@@ -243,29 +587,18 @@ offset_right = 45.0
 offset_bottom = -597.0
 color = Color(0.34, 0.19935334, 0.0918, 1)
 
-[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" unique_id=497554065]
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(360, 168, 358, 193, -355, 192, -356, -189, 362, -188, 360, -163, -325, -158, -323, 165)
-
 [node name="Polygon2D3" type="Polygon2D" parent="StaticBody2D" unique_id=38917851]
 position = Vector2(-141.14206, -702.1728)
 scale = Vector2(0.54735374, 0.58638746)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-355, 192, -356, -189, 362, -188, 367.48093, 186.17865, 329.11453, 189.58936, 327.28754, -165.125, -325, -158, -323, 165, 323.6336, 160.59827, 329.11453, 191.29468)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1538908326]
-polygon = PackedVector2Array(-157, -160, 361, -164, 362, -188, -355, -189, -352, 189, 357, 193, 360, 171, -323, 165, -321.48172, -80.95569, -156, -81)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="StaticBody2D" unique_id=1606433063]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=305641181]
-position = Vector2(376.5, 2.5)
+position = Vector2(390.5, 2.5)
 shape = SubResource("RectangleShape2D_2gnfn")
 disabled = true
-
-[node name="Polygon2D2" type="Polygon2D" parent="StaticBody2D" unique_id=1774205306]
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(-326, -158, -155, -160, -155, -81, -325, -82)
 
 [node name="Polygon2D4" type="Polygon2D" parent="StaticBody2D" unique_id=1127449643]
 position = Vector2(198, -644)
@@ -289,28 +622,56 @@ texture = ExtResource("2_bseor")
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=346922046]
 polygon = PackedVector2Array(-319, -795, 39, -798, 41, -593, 61, -593, 56, -812, -336, -814, -335, -592, 39, -590, 36, -606, -318, -605)
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=2142731364]
+position = Vector2(93, -209)
+shape = SubResource("RectangleShape2D_dschd")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=2015228642]
+position = Vector2(93, 209)
+shape = SubResource("RectangleShape2D_dschd")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D" unique_id=1764263851]
+position = Vector2(-199, 3)
+shape = SubResource("RectangleShape2D_83dbu")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D" unique_id=5721112]
+position = Vector2(-108.5, -166.5)
+shape = SubResource("RectangleShape2D_vbj2c")
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=229359432]
 position = Vector2(-349, 1)
 stream = ExtResource("2_2gnfn")
 panning_strength = 1.88
 
 [node name="Node" parent="." unique_id=1956967542 node_paths=PackedStringArray("wave_nodes_array") instance=ExtResource("3_3m36u")]
-wave_nodes_array = [NodePath("WaveIndividual"), NodePath("WaveIndividual2")]
+wave_nodes_array = [NodePath("WaveIndividual"), NodePath("WaveIndividual2"), NodePath("WaveIndividual3"), NodePath("WaveIndividual4"), NodePath("WaveIndividual5")]
 
 [node name="WaveIndividual" type="Node2D" parent="Node" unique_id=2113457785]
 script = ExtResource("4_8qiel")
 enemy_clusters = Array[ExtResource("5_itrim")]([SubResource("Resource_48mkp"), SubResource("Resource_mx31c"), SubResource("Resource_8qiel"), SubResource("Resource_bseor")])
-max_wave_duration = 40.0
+max_wave_duration = 60.0
 metadata/_custom_type_script = "uid://d16nr5pkevxbd"
 
 [node name="WaveIndividual2" type="Node2D" parent="Node" unique_id=2086843610]
 script = ExtResource("4_8qiel")
-enemy_clusters = Array[ExtResource("5_itrim")]([SubResource("Resource_fs4we")])
-max_wave_duration = 10.0
+enemy_clusters = Array[ExtResource("5_itrim")]([SubResource("Resource_fs4we"), SubResource("Resource_dschd"), SubResource("Resource_xifwb"), SubResource("Resource_6vtx4")])
+max_wave_duration = 60.0
 metadata/_custom_type_script = "uid://d16nr5pkevxbd"
 
+[node name="WaveIndividual3" parent="Node" unique_id=1843104872 instance=ExtResource("11_dschd")]
+enemy_clusters = Array[ExtResource("5_itrim")]([SubResource("Resource_nwefg"), SubResource("Resource_7tpya"), SubResource("Resource_u7rkd"), SubResource("Resource_kwpx1"), SubResource("Resource_ud00f"), SubResource("Resource_g7uqr")])
+max_wave_duration = 60.0
+
+[node name="WaveIndividual4" parent="Node" unique_id=499102737 instance=ExtResource("11_dschd")]
+enemy_clusters = Array[ExtResource("5_itrim")]([SubResource("Resource_re7e4"), SubResource("Resource_qdbuh"), SubResource("Resource_3mg5m"), SubResource("Resource_iuxt1"), SubResource("Resource_vsg0s"), SubResource("Resource_i0rmv")])
+max_wave_duration = 60.0
+
+[node name="WaveIndividual5" parent="Node" unique_id=2077466108 instance=ExtResource("11_dschd")]
+enemy_clusters = Array[ExtResource("5_itrim")]([SubResource("Resource_8jkn4"), SubResource("Resource_kbhtu"), SubResource("Resource_mvhns"), SubResource("Resource_b7y7k"), SubResource("Resource_8aens"), SubResource("Resource_7f781")])
+max_wave_duration = 60.0
+
 [node name="shoparea" type="Area2D" parent="." unique_id=1995755235]
-position = Vector2(-243, -119)
+position = Vector2(-108, -164)
 collision_layer = 3
 collision_mask = 3
 
@@ -390,6 +751,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("11_48mkp")
+
+[node name="Purchased" type="Label" parent="Shop/Shop" unique_id=299884062]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -41.0
+offset_top = 9.0
+offset_right = 65.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.6, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("11_tlr80")
+theme_override_font_sizes/font_size = 20
+text = "Purchased"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Shop/Shop/Purchased" unique_id=701918468]
+stream = ExtResource("13_fs4we")
+volume_db = -5.0
 
 [node name="Panel" type="Panel" parent="Shop/Shop" unique_id=265072424]
 layout_mode = 1
@@ -507,17 +893,103 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="Shop/Shop/Panel/Newweapn/HBoxContainer" unique_id=1378228777]
+[node name="item1" type="Button" parent="Shop/Shop/Panel/Newweapn/HBoxContainer" unique_id=1378228777]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+icon = ExtResource("14_tbq4g")
+icon_alignment = 1
+expand_icon = true
 
-[node name="Button2" type="Button" parent="Shop/Shop/Panel/Newweapn/HBoxContainer" unique_id=562502356]
+[node name="item2" type="Button" parent="Shop/Shop/Panel/Newweapn/HBoxContainer" unique_id=562502356]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+icon_alignment = 1
+expand_icon = true
 
-[node name="Button3" type="Button" parent="Shop/Shop/Panel/Newweapn/HBoxContainer" unique_id=404002653]
+[node name="item3" type="Button" parent="Shop/Shop/Panel/Newweapn/HBoxContainer" unique_id=404002653]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+icon_alignment = 1
+expand_icon = true
+
+[node name="labels" type="HBoxContainer" parent="Shop/Shop/Panel/Newweapn" unique_id=565934628]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 35.5
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Button" type="Label" parent="Shop/Shop/Panel/Newweapn/labels" unique_id=686441169]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_tlr80")
+theme_override_font_sizes/font_size = 10
+text = "asdf"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button2" type="Label" parent="Shop/Shop/Panel/Newweapn/labels" unique_id=203846209]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_tlr80")
+theme_override_font_sizes/font_size = 10
+text = "asdf"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button3" type="Label" parent="Shop/Shop/Panel/Newweapn/labels" unique_id=286688056]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_tlr80")
+theme_override_font_sizes/font_size = 10
+text = "asdf"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="invfull" type="Panel" parent="Shop/Shop/Panel/Newweapn" unique_id=1046814041]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Shop/Shop/Panel/Newweapn/invfull" unique_id=114321489]
+material = SubResource("ShaderMaterial_fs4we")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 4.0
+offset_right = -7.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Shop/Shop/Panel/Newweapn/invfull" unique_id=69379902]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -11.5
+offset_right = 72.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.36, 0.36, 1)
+theme_override_fonts/font = ExtResource("11_tlr80")
+theme_override_font_sizes/font_size = 20
+text = "Inventory Full"
 
 [node name="Label" type="Label" parent="Shop/Shop/Panel" unique_id=1406791600]
 layout_mode = 1
@@ -545,3 +1017,6 @@ libraries/ = SubResource("AnimationLibrary_mx31c")
 [connection signal="body_entered" from="shopkeeper" to="." method="_on_shopkeeper_body_entered"]
 [connection signal="body_exited" from="shopkeeper" to="." method="_on_shopkeeper_body_exited"]
 [connection signal="pressed" from="Shop/Shop/Panel/UpgradeButton" to="Shop/Shop" method="_on_button_pressed"]
+[connection signal="pressed" from="Shop/Shop/Panel/Newweapn/HBoxContainer/item1" to="Shop/Shop" method="_on_item_1_pressed"]
+[connection signal="pressed" from="Shop/Shop/Panel/Newweapn/HBoxContainer/item2" to="Shop/Shop" method="_on_item_2_pressed"]
+[connection signal="pressed" from="Shop/Shop/Panel/Newweapn/HBoxContainer/item3" to="Shop/Shop" method="_on_item_3_pressed"]
