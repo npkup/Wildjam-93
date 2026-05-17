@@ -4,6 +4,7 @@ class_name WaveIndividual extends Node2D
 @export var max_wave_duration : float
 
 var wave_started : bool = false
+var wave_ended_after_starting : bool = false
 
 var wave_timer_function : Callable = func():
 	await get_tree().create_timer(max_wave_duration).timeout
@@ -15,7 +16,7 @@ func _ready() -> void:
 	wave_ended.connect(queue_free)
 
 func _process(_delta: float) -> void:
-	if wave_started and get_child_count() <= 0:
+	if wave_started and get_child_count() <= 0 and wave_ended_after_starting:
 		wave_ended.emit()
 
 func start_wave() -> void:
@@ -28,3 +29,4 @@ func start_wave() -> void:
 			add_child(enemy_scene)
 			enemy_scene.position = cluster_origin + Vector2(randf_range(-10, 10), randf_range(-10, 10))
 		await get_tree().create_timer(cluster.cluster_details.duration).timeout
+	wave_ended_after_starting = true

@@ -1,7 +1,7 @@
 extends Panel
 
 var weapons_chosen : Array[Global.items] = []
-var max_choosable  : int = 2
+var max_choosable  : int = 1
 
 func _ready() -> void:
 	$"..".show()
@@ -17,20 +17,14 @@ func _process(_delta: float) -> void:
 	if weapons_chosen.size() >= max_choosable:
 		$HBoxContainer/Pistol.disabled = true
 		$HBoxContainer/Dagger.disabled = true
-		$HBoxContainer/Shotgun.disabled = true
-		$HBoxContainer/Sword.disabled = true
-		$HBoxContainer/Pistol/Label.add_theme_color_override("font_color", Color(255, 0, 0, 1))
-		$HBoxContainer/Dagger/Label.add_theme_color_override("font_color", Color(255, 0, 0, 1))
-		$HBoxContainer/Shotgun/Label.add_theme_color_override("font_color", Color(255, 0, 0, 1))
-		$HBoxContainer/Sword/Label.add_theme_color_override("font_color", Color(255, 0, 0, 1))
-		$"../Label2".add_theme_color_override("font_color", Color(255, 0, 0, 1))
+		$HBoxContainer/Pistol/Label.add_theme_color_override("font_color", Color(1, 1, 0, 1))
+		$HBoxContainer/Dagger/Label.add_theme_color_override("font_color", Color(1, 1, 0, 1))
+		$"../Label2".add_theme_color_override("font_color", Color(1, 1, 0, 1))
 	else:
 		$"../Label2".add_theme_color_override("font_color", Color(1, 1, 1, 1))
 		$HBoxContainer/Pistol/Label.add_theme_color_override("font_color", Color(1, 1, 1, 1))
 		$HBoxContainer/Dagger/Label.add_theme_color_override("font_color", Color(1, 1, 1, 1))
-		$HBoxContainer/Shotgun/Label.add_theme_color_override("font_color", Color(1, 1, 1, 1))
-		$HBoxContainer/Sword/Label.add_theme_color_override("font_color", Color(1, 1, 1, 1))
-	
+		
 	if weapons_chosen:
 		$"../../PanelContainer/VBoxContainer/Label".text = Global.item_list_names[weapons_chosen[0]]
 	if weapons_chosen.size() > 1:
@@ -54,7 +48,7 @@ func start_game() -> void:
 	Global.inventory_items[2] = weapons_chosen[1]
 	Global.inventory_items[3] = weapons_chosen[2]
 	Global.inventory_items[4] = weapons_chosen[3]
-	Global.inventory_items[5] = weapons_chosen[4]
+	#Global.inventory_items[5] = weapons_chosen[4]
 	$"../..".queue_free()
 
 

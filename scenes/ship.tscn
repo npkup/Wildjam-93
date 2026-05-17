@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://3l4y47o6mwg6" path="res://scripts/ship.gd" id="1_q631a"]
 [ext_resource type="AudioStream" uid="uid://d3ny3o78t2gks" path="res://assets/sounds/ship_horn.mp3" id="2_2gnfn"]
+[ext_resource type="Texture2D" uid="uid://botkxo2371q5m" path="res://assets/sprites/level/shop.png" id="2_bseor"]
 [ext_resource type="PackedScene" uid="uid://biwii1e8f6cl7" path="res://scenes/wave_sequence.tscn" id="3_3m36u"]
 [ext_resource type="Script" uid="uid://d16nr5pkevxbd" path="res://scripts/wave_individual.gd" id="4_8qiel"]
 [ext_resource type="Script" uid="uid://k8dkjhmllfr3" path="res://scripts/wave_item.gd" id="5_itrim"]
@@ -9,12 +10,18 @@
 [ext_resource type="PackedScene" uid="uid://cvo044l0k6hhh" path="res://scenes/slow_enemy.tscn" id="7_8qiel"]
 [ext_resource type="PackedScene" uid="uid://cby80ld3kt4qv" path="res://scenes/basic_charge_enemy.tscn" id="7_tlr80"]
 [ext_resource type="PackedScene" uid="uid://nknvyqk5hevd" path="res://scenes/interactpanel.tscn" id="9_itrim"]
+[ext_resource type="Script" uid="uid://b223p5mhqxjqt" path="res://scripts/shop.gd" id="11_48mkp"]
+[ext_resource type="FontFile" uid="uid://dy1w10g1web26" path="res://Pixolletta8px.ttf" id="11_tlr80"]
+[ext_resource type="Texture2D" uid="uid://d1j0tw275t7wp" path="res://assets/sprites/items/pistol/pistol.png" id="12_03y04"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_03b2l"]
 size = Vector2(681, 360)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2gnfn"]
 size = Vector2(31, 375)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bseor"]
+size = Vector2(166, 66)
 
 [sub_resource type="Resource" id="Resource_03y04"]
 script = ExtResource("6_bseor")
@@ -82,6 +89,133 @@ metadata/_custom_type_script = "uid://k8dkjhmllfr3"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8qiel"]
 size = Vector2(186, 84)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_itrim"]
+size = Vector2(186, 84)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tlr80"]
+size = Vector2(82, 44)
+
+[sub_resource type="Animation" id="Animation_itrim"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_bseor"]
+resource_name = "roomtransition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tlr80"]
+_data = {
+&"RESET": SubResource("Animation_itrim"),
+&"roomtransition": SubResource("Animation_bseor")
+}
+
+[sub_resource type="Animation" id="Animation_48mkp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_tbq4g"]
+resource_name = "shopmenu"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.19166666),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mx31c"]
+_data = {
+&"RESET": SubResource("Animation_48mkp"),
+&"shopmenu": SubResource("Animation_tbq4g")
+}
+
 [node name="Area2D" type="Area2D" unique_id=198971558]
 collision_layer = 0
 collision_mask = 3
@@ -102,9 +236,22 @@ shape = SubResource("RectangleShape2D_03b2l")
 collision_layer = 7
 collision_mask = 7
 
+[node name="ColorRect2" type="ColorRect" parent="StaticBody2D" unique_id=1414324018]
+offset_left = -327.0
+offset_top = -805.0
+offset_right = 45.0
+offset_bottom = -597.0
+color = Color(0.34, 0.19935334, 0.0918, 1)
+
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" unique_id=497554065]
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(360, 168, 358, 193, -355, 192, -356, -189, 362, -188, 360, -163, -325, -158, -323, 165)
+
+[node name="Polygon2D3" type="Polygon2D" parent="StaticBody2D" unique_id=38917851]
+position = Vector2(-141.14206, -702.1728)
+scale = Vector2(0.54735374, 0.58638746)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-355, 192, -356, -189, 362, -188, 367.48093, 186.17865, 329.11453, 189.58936, 327.28754, -165.125, -325, -158, -323, 165, 323.6336, 160.59827, 329.11453, 191.29468)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1538908326]
 polygon = PackedVector2Array(-157, -160, 361, -164, 362, -188, -355, -189, -352, 189, 357, 193, 360, 171, -323, 165, -321.48172, -80.95569, -156, -81)
@@ -119,6 +266,28 @@ disabled = true
 [node name="Polygon2D2" type="Polygon2D" parent="StaticBody2D" unique_id=1774205306]
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-326, -158, -155, -160, -155, -81, -325, -82)
+
+[node name="Polygon2D4" type="Polygon2D" parent="StaticBody2D" unique_id=1127449643]
+position = Vector2(198, -644)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-326, -158, -155, -160, -155, -81, -325, -82)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1916847566]
+position = Vector2(-47, -760)
+shape = SubResource("RectangleShape2D_bseor")
+
+[node name="shoplocation" type="Marker2D" parent="StaticBody2D" unique_id=562098228]
+position = Vector2(-149, -757)
+
+[node name="shipmainlocation" type="Marker2D" parent="StaticBody2D" unique_id=725953243]
+position = Vector2(-140, -117)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=660075881]
+position = Vector2(-235, -779)
+texture = ExtResource("2_bseor")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=346922046]
+polygon = PackedVector2Array(-319, -795, 39, -798, 41, -593, 61, -593, 56, -812, -336, -814, -335, -592, 39, -590, 36, -606, -318, -605)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=229359432]
 position = Vector2(-349, 1)
@@ -154,7 +323,225 @@ offset_top = -16.0
 offset_right = 16.0
 offset_bottom = 16.0
 
+[node name="shipescapearea" type="Area2D" parent="." unique_id=1714296674]
+position = Vector2(196, -642)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="shipescapearea" unique_id=2055067719]
+position = Vector2(-243, -119)
+shape = SubResource("RectangleShape2D_itrim")
+
+[node name="Panel2" parent="shipescapearea" unique_id=1137569434 instance=ExtResource("9_itrim")]
+offset_left = -259.0
+offset_top = -135.0
+offset_right = -227.0
+offset_bottom = -103.0
+
+[node name="shopkeeper" type="Area2D" parent="." unique_id=1667506907]
+collision_layer = 3
+collision_mask = 3
+
+[node name="Panel3" parent="shopkeeper" unique_id=41181115 instance=ExtResource("9_itrim")]
+offset_left = -250.0
+offset_top = -823.0
+offset_right = -218.0
+offset_bottom = -791.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shopkeeper" unique_id=948954039]
+position = Vector2(-235, -778)
+shape = SubResource("RectangleShape2D_tlr80")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=79104273]
+layer = 5
+visible = false
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1197241602]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control" unique_id=1686868539]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control" unique_id=187402589]
+libraries/ = SubResource("AnimationLibrary_tlr80")
+
+[node name="Shop" type="CanvasLayer" parent="." unique_id=1718240685]
+layer = 4
+visible = false
+
+[node name="Shop" type="Control" parent="Shop" unique_id=191515813]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_48mkp")
+
+[node name="Panel" type="Panel" parent="Shop/Shop" unique_id=265072424]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 75.0
+offset_top = 49.0
+offset_right = -75.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="Title" type="Label" parent="Shop/Shop/Panel" unique_id=581036339]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -36.0
+offset_top = 8.0
+offset_right = 36.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("11_tlr80")
+theme_override_font_sizes/font_size = 30
+text = "Shop"
+
+[node name="Gunname" type="Label" parent="Shop/Shop/Panel" unique_id=1539713846]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 83.0
+offset_right = 59.0
+offset_bottom = 93.0
+theme_override_fonts/font = ExtResource("11_tlr80")
+theme_override_font_sizes/font_size = 10
+text = "Pisstol"
+
+[node name="WeaponUpgrade" type="Panel" parent="Shop/Shop/Panel" unique_id=1591569851]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -35.0
+offset_right = 78.0
+offset_bottom = 35.0
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Shop/Shop/Panel/WeaponUpgrade" unique_id=1592704156]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_03y04")
+stretch_mode = 4
+
+[node name="UpgradeButton" type="Button" parent="Shop/Shop/Panel" unique_id=217437161]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 88.0
+offset_top = -4.0
+offset_right = 96.0
+offset_bottom = 4.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("11_tlr80")
+theme_override_font_sizes/font_size = 10
+text = "Upgrade"
+
+[node name="Newweapn" type="Panel" parent="Shop/Shop/Panel" unique_id=1907014074]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -301.0
+offset_top = -59.0
+offset_right = -8.0
+offset_bottom = 123.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Shop/Shop/Panel/Newweapn" unique_id=212122748]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -146.5
+offset_top = 8.0
+offset_right = 146.5
+offset_bottom = 28.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("11_tlr80")
+theme_override_font_sizes/font_size = 20
+text = "New weapons"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Shop/Shop/Panel/Newweapn" unique_id=1671613568]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Shop/Shop/Panel/Newweapn/HBoxContainer" unique_id=1378228777]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="Shop/Shop/Panel/Newweapn/HBoxContainer" unique_id=562502356]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="Shop/Shop/Panel/Newweapn/HBoxContainer" unique_id=404002653]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Shop/Shop/Panel" unique_id=1406791600]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -18.0
+offset_right = 83.0
+offset_bottom = -8.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("11_tlr80")
+theme_override_font_sizes/font_size = 10
+text = "prez e to cluz"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Shop/Shop" unique_id=1896875163]
+libraries/ = SubResource("AnimationLibrary_mx31c")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="body_entered" from="shoparea" to="." method="_on_shoparea_body_entered"]
 [connection signal="body_exited" from="shoparea" to="." method="_on_shoparea_body_exited"]
+[connection signal="body_entered" from="shipescapearea" to="." method="_on_shipescapearea_body_entered"]
+[connection signal="body_exited" from="shipescapearea" to="." method="_on_shipescapearea_body_exited"]
+[connection signal="body_entered" from="shopkeeper" to="." method="_on_shopkeeper_body_entered"]
+[connection signal="body_exited" from="shopkeeper" to="." method="_on_shopkeeper_body_exited"]
+[connection signal="pressed" from="Shop/Shop/Panel/UpgradeButton" to="Shop/Shop" method="_on_button_pressed"]

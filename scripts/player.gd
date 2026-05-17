@@ -39,6 +39,7 @@ var max_health : int = 100
 
 var bullet_trail : PackedScene = preload("res://scenes/bullettrail.tscn")
 var pistol_bullet : PackedScene = preload("res://scenes/pistolbullet.tscn")
+var bomb : PackedScene = preload("res://scenes/bomb.tscn")
 
 func _ready() -> void:
 	$"../UI/healthbar".value = health
@@ -46,6 +47,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if player_enabled:
+		$ProgressBar.value = attack_cooldown_timer
+		$ProgressBar.visible = attack_cooldown_timer > 0
 		$mouseframe.global_position = global_position + (get_global_mouse_position() - global_position)/(1/lookahead_ratio)
 		var up_down_direction : float = Input.get_axis("up", "down")
 		var left_right_direction : float = Input.get_axis("left", "right")
@@ -62,8 +65,11 @@ func _physics_process(delta: float) -> void:
 			$AnimationPlayer.play("RESET")
 			match Global.inventory_items[Global.focused_slot]:
 				Global.items.PISTOL:
+					
 					$AnimationPlayer.play("pistol")
+					$AnimationPlayer.speed_scale = Global.primary_animation_speed
 					var bullet : Bullet = pistol_bullet.instantiate()
+					bullet.bullet_damage = 10 * Global.primary_damage_multiplier
 					bullet.global_rotation = $Marker2D.global_rotation
 					bullet.global_position = weapon_sprite.global_position
 					bullet.player = self
@@ -72,11 +78,14 @@ func _physics_process(delta: float) -> void:
 					gunshot_pistol.pitch_scale = randf_range(0.96, 1.04)
 					camera_shake_power = 4
 					attack_cooldown_timer = $AnimationPlayer.get_animation("pistol").length / $AnimationPlayer.speed_scale
+					$ProgressBar.max_value = attack_cooldown_timer
 				Global.items.DAGGER:
 					$AnimationPlayer.play("dagger")
-					$Marker2D/EnemyHurter.damage = 20
+					$AnimationPlayer.speed_scale = Global.primary_animation_speed
+					$Marker2D/EnemyHurter.damage = 15 * Global.primary_damage_multiplier
 					$Marker2D/EnemyHurter.impact_direction_degrees = $Marker2D.global_rotation_degrees
 					attack_cooldown_timer = $AnimationPlayer.get_animation("pistol").length / $AnimationPlayer.speed_scale
+					$ProgressBar.max_value = attack_cooldown_timer
 					dagger_sound.play()
 					dagger_sound.pitch_scale = randf_range(0.96, 1.04)
 				Global.items.SHOTGUN:
@@ -102,6 +111,7 @@ func _physics_process(delta: float) -> void:
 					velocity.y = -sin($Marker2D.rotation) * 200
 					camera_shake_power = 6
 					attack_cooldown_timer = $AnimationPlayer.get_animation("shotgun").length / $AnimationPlayer.speed_scale
+					$ProgressBar.max_value = attack_cooldown_timer
 				Global.items.SWORD:
 					$AnimationPlayer.play("sword")
 					$Marker2D/EnemyHurter.damage = 60
@@ -110,7 +120,14 @@ func _physics_process(delta: float) -> void:
 					attack_cooldown_timer = $AnimationPlayer.get_animation("sword").length / $AnimationPlayer.speed_scale
 					await get_tree().create_timer(0.2).timeout
 					$Node2D/sword.play()
-		
+				Global.items.BOMB:
+					attack_cooldown_timer = 3.5
+					$ProgressBar.max_value = attack_cooldown_timer
+					var bombastic : Area2D = bomb.instantiate()
+					bombastic.direction_radians = $Marker2D.rotation
+					bombastic.velocity = Vector2(cos($Marker2D.rotation) * 180, sin($Marker2D.rotation) * 180)
+					add_sibling(bombastic)
+					bombastic.global_position = global_position
 		
 		
 		if up_down_direction:

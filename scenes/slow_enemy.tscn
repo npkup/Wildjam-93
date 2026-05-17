@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bfbttkvsv5sxt" path="res://scripts/slow_enemy.gd" id="1_ukqrj"]
 [ext_resource type="PackedScene" uid="uid://bbcetvuwcwhr" path="res://scenes/alertparticles.tscn" id="2_ru6l0"]
+[ext_resource type="Texture2D" uid="uid://cbyaftlibwosa" path="res://assets/sprites/enemies/slow/robot.png" id="3_k8mbi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ru6l0"]
 size = Vector2(16, 30)
@@ -12,16 +13,58 @@ size = Vector2(16, 30)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ru6l0"]
 radius = 128.76335
 
-[node name="Enemy" type="CharacterBody2D" unique_id=2043674558 node_paths=PackedStringArray("damage_box_area2D", "hitbox_shape", "animated_sprite", "other_visuals")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8mbi"]
+atlas = ExtResource("3_k8mbi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rk3uy"]
+atlas = ExtResource("3_k8mbi")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjc6e"]
+atlas = ExtResource("3_k8mbi")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4dvq"]
+atlas = ExtResource("3_k8mbi")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mtsca"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8mbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rk3uy")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjc6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4dvq")
+}],
+"loop": true,
+"name": &"run",
+"speed": 6.0
+}]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=2043674558 node_paths=PackedStringArray("damage_box_area2D", "hitbox_shape", "animated_sprite")]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_ukqrj")
-health = 80
-max_health = 80
+health = 60
+max_health = 60
 damage_box_area2D = NodePath("DamageBox")
 hitbox_shape = NodePath("CollisionShape2D")
 animated_sprite = NodePath("AnimatedSprite2D")
-other_visuals = [NodePath("Polygon2D")]
+coins_dropped_min = 5
+coins_dropped_max = 10
 metadata/_custom_type_script = "uid://cmx0f13pd6gf8"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1320350060]
@@ -34,10 +77,6 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBox" unique_id=674322161]
 shape = SubResource("RectangleShape2D_k8mbi")
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1443397198]
-color = Color(0.04000002, 0.7760002, 1, 1)
-polygon = PackedVector2Array(-8, 15, 8, 15, 8, -15, -8, -15)
-
 [node name="alertparticle" parent="." unique_id=830079781 instance=ExtResource("2_ru6l0")]
 position = Vector2(0, -25)
 
@@ -47,7 +86,11 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_range" unique_id=1529781724]
 shape = SubResource("CircleShape2D_ru6l0")
+disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1510978795]
+sprite_frames = SubResource("SpriteFrames_mtsca")
+animation = &"run"
+frame_progress = 0.7404627
 
 [connection signal="body_entered" from="detection_range" to="." method="_on_detection_range_body_entered"]

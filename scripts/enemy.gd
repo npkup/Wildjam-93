@@ -9,6 +9,8 @@ class_name Enemy extends CharacterBody2D
 @export var hitbox_shape : CollisionShape2D
 @export var animated_sprite : AnimatedSprite2D
 @export var other_visuals : Array[Node2D]
+@export var coins_dropped_min : int
+@export var coins_dropped_max : int
 
 var player : Player
 var alive : bool = true
@@ -17,6 +19,9 @@ var enemy_movement_enabled : bool = false
 
 var dmg_particle : PackedScene = preload("res://scenes/enemy_dmg_particles.tscn")
 var dead_particle : PackedScene = preload("res://scenes/enemy_dead_particles.tscn")
+var coin : PackedScene = preload("res://scenes/coin.tscn")
+
+signal enemy_ready
 
 func _ready() -> void:
 	damage_box_area2D.body_entered.connect(_on_body_entered)
@@ -26,8 +31,10 @@ func _ready() -> void:
 	alive = health > 0
 	for visual in other_visuals:
 		visual.hide()
+	animated_sprite.hide()
 	var spawn_alert : Sprite2D = Sprite2D.new()
-	damage_box_area2D.set_deferred("disabled", true)
+	hitbox_shape.set_deferred("disabled", true)
+	damage_box_area2D.get_child(0).set_deferred("disabled", true)
 	spawn_alert.texture = preload("res://assets/sprites/particles/enemy_spawn_alert.png")
 	add_child(spawn_alert)
 	for i in 5:
@@ -39,7 +46,10 @@ func _ready() -> void:
 	enemy_movement_enabled = true
 	for visual in other_visuals:
 		visual.show()
-	damage_box_area2D.set_deferred("disabled", false)
+	animated_sprite.show()
+	damage_box_area2D.get_child(0).set_deferred("disabled", false)
+	hitbox_shape.set_deferred("disabled", false)
+	enemy_ready.emit()
 
 func take_damage(damage_taken : int, impact_direction_degrees : float = 0.0) -> void:
 	health -= damage_taken
@@ -69,6 +79,10 @@ func take_damage(damage_taken : int, impact_direction_degrees : float = 0.0) -> 
 		add_sibling(dead)
 		dead.global_position = global_position
 		dead.emitting = true
+		for i in randi_range(coins_dropped_min, coins_dropped_max):
+			var coins : Area2D = coin.instantiate()
+			get_parent().add_sibling(coins)
+			coins.global_position = global_position + Vector2(randf_range(-15, 15), randf_range(-15, 15))
 		await get_tree().create_timer(dead.lifetime / dead.speed_scale).timeout
 		dead.queue_free()
 		queue_free()

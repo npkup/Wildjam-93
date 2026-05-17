@@ -17,6 +17,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_bo5j5"]
 resource_name = "wave_proceed_apprear"
@@ -33,6 +45,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_il5ql"]
 _data = {
@@ -44,6 +68,8 @@ _data = {
 script = ExtResource("1_8g71x")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1855339171]
+layer = 4
+visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer" unique_id=1366477354]
 layout_mode = 3
@@ -74,5 +100,19 @@ text = "Proceed to next wave"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control" unique_id=609710929]
 libraries/ = SubResource("AnimationLibrary_il5ql")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control" unique_id=1030358647]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -117.0
+offset_top = 8.0
+offset_right = 117.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_bo5j5")
+theme_override_font_sizes/font_size = 30
+text = "Wave complete"
 
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_button_pressed"]

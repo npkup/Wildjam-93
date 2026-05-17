@@ -1,13 +1,14 @@
 extends Node2D
 
-enum items {EMPTY, PISTOL, DAGGER, SWORD, SHOTGUN}
+enum items {EMPTY, PISTOL, DAGGER, SWORD, SHOTGUN, BOMB}
 
 var items_list_textures : Dictionary[items, Texture2D] = {
 	items.EMPTY  : preload("res://assets/sprites/items/empty/empty.png"),
 	items.PISTOL : preload("res://assets/sprites/items/pistol/pistol.png"),
 	items.DAGGER : preload("res://assets/sprites/items/dagger/dager.png"),
 	items.SWORD : preload("res://assets/sprites/items/sword/sword.png"),
-	items.SHOTGUN : preload("res://assets/sprites/items/shotgun/SHORTGUN.png")
+	items.SHOTGUN : preload("res://assets/sprites/items/shotgun/SHORTGUN.png"),
+	items.BOMB : preload("res://assets/sprites/items/bomb/bomb_inv.png")
 }
 
 var item_list_names : Dictionary[items, StringName] = {
@@ -15,7 +16,13 @@ var item_list_names : Dictionary[items, StringName] = {
 	items.PISTOL : &"Pistol",
 	items.DAGGER : &"Dagger",
 	items.SWORD : &"Sword",
-	items.SHOTGUN : &"Shotgun"
+	items.SHOTGUN : &"Shotgun",
+	items.BOMB : &"Bomb"
+}
+
+var special_items_costs : Dictionary[items, int] = {
+	items.SWORD : 250,
+	items.SHOTGUN : 100
 }
 
 var inventory_items : Dictionary[int, items] = {
@@ -23,13 +30,15 @@ var inventory_items : Dictionary[int, items] = {
 	2 : items.EMPTY,
 	3 : items.EMPTY,
 	4 : items.EMPTY,
-	5 : items.EMPTY
+	5 : items.BOMB
 }
 
 var focused_slot : int = 1
-var money : int = 1000
+var money : int = 0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+var primary_damage_multiplier : float = 1
+var primary_animation_speed : float = 2
+
 func _process(_delta: float) -> void:
 	focused_slot = clamp(focused_slot, 1, 5)
 

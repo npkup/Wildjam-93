@@ -487,5 +487,12 @@ libraries/ = SubResource("AnimationLibrary_fjrip")
 [node name="playerdmg" type="AnimationPlayer" parent="." unique_id=430512754]
 libraries/ = SubResource("AnimationLibrary_f1ej7")
 
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=88414738]
+offset_left = -21.0
+offset_top = -25.0
+offset_right = 22.0
+offset_bottom = -20.0
+show_percentage = false
+
 [connection signal="animation_changed" from="AnimationPlayer" to="." method="_on_animation_player_animation_changed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
