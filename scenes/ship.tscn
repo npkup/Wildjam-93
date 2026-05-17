@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://boey8mu0r4f6h" path="res://scripts/enemy_cluster_details.gd" id="6_bseor"]
 [ext_resource type="PackedScene" uid="uid://cvo044l0k6hhh" path="res://scenes/slow_enemy.tscn" id="7_8qiel"]
 [ext_resource type="PackedScene" uid="uid://cby80ld3kt4qv" path="res://scenes/basic_charge_enemy.tscn" id="7_tlr80"]
+[ext_resource type="PackedScene" uid="uid://nknvyqk5hevd" path="res://scenes/interactpanel.tscn" id="9_itrim"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_03b2l"]
 size = Vector2(681, 360)
@@ -78,6 +79,9 @@ enemy_scene = ExtResource("7_tlr80")
 cluster_details = SubResource("Resource_tlr80")
 metadata/_custom_type_script = "uid://k8dkjhmllfr3"
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qiel"]
+size = Vector2(186, 84)
+
 [node name="Area2D" type="Area2D" unique_id=198971558]
 collision_layer = 0
 collision_mask = 3
@@ -136,5 +140,21 @@ enemy_clusters = Array[ExtResource("5_itrim")]([SubResource("Resource_fs4we")])
 max_wave_duration = 10.0
 metadata/_custom_type_script = "uid://d16nr5pkevxbd"
 
+[node name="shoparea" type="Area2D" parent="." unique_id=1995755235]
+position = Vector2(-243, -119)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shoparea" unique_id=761206185]
+shape = SubResource("RectangleShape2D_8qiel")
+
+[node name="Panel" parent="shoparea" unique_id=1054316045 instance=ExtResource("9_itrim")]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_entered" from="shoparea" to="." method="_on_shoparea_body_entered"]
+[connection signal="body_exited" from="shoparea" to="." method="_on_shoparea_body_exited"]

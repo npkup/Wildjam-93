@@ -70,6 +70,7 @@ func take_damage(damage_taken : int, impact_direction_degrees : float = 0.0) -> 
 		dead.global_position = global_position
 		dead.emitting = true
 		await get_tree().create_timer(dead.lifetime / dead.speed_scale).timeout
+		dead.queue_free()
 		queue_free()
 
 func _physics_process(_delta: float) -> void:

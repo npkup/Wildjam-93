@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://nknvyqk5hevd"]
+
+[ext_resource type="FontFile" uid="uid://dy1w10g1web26" path="res://Pixolletta8px.ttf" id="1_tcvwl"]
+[ext_resource type="Script" uid="uid://co4wek2k64nsl" path="res://scripts/interactpanel.gd" id="1_xo14d"]
+
+[node name="Panel" type="Panel" unique_id=1054316045]
+custom_minimum_size = Vector2(32, 32)
+offset_right = 32.0
+offset_bottom = 32.0
+script = ExtResource("1_xo14d")
+
+[node name="Label" type="Label" parent="." unique_id=96870674]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 81.0
+offset_top = 11.5
+offset_right = -81.0
+offset_bottom = -11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_tcvwl")
+text = "e"
+horizontal_alignment = 1
+vertical_alignment = 1
