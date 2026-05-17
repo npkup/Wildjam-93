@@ -8,7 +8,7 @@ func _ready() -> void:
 	get_tree().paused = true
 
 func _process(_delta: float) -> void:
-	#$"../VBoxContainer/Confirm".disabled = !weapons_chosen.size() >= max_choosable
+	$"../VBoxContainer/Confirm".disabled = !weapons_chosen.size() >= max_choosable
 	
 	if !weapons_chosen:
 		for label in $"../../PanelContainer/VBoxContainer".get_children():
