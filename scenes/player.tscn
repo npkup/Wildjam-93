@@ -459,8 +459,8 @@ autoplay = "idle"
 
 [node name="EnemyHurter" type="Area2D" parent="Marker2D" unique_id=1372523463]
 position = Vector2(18, 0)
-collision_layer = 4
-collision_mask = 4
+collision_layer = 6
+collision_mask = 6
 script = ExtResource("10_d2wvv")
 metadata/_custom_type_script = "uid://bta7jhpdexk1t"
 

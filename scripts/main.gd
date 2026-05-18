@@ -43,7 +43,7 @@ var inventory_items : Dictionary[int, items] = {
 var focused_slot : int = 1
 var money : int = 0
 var primary_damage_multiplier : float = 1
-var primary_animation_speed : float = 2
+var primary_animation_speed : float = 1
 
 func _process(_delta: float) -> void:
 	focused_slot = clamp(focused_slot, 1, 5)

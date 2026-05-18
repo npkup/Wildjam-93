@@ -5,7 +5,7 @@ var player : Player
 func _physics_process(delta: float) -> void:
 	if player:
 		if global_position.distance_to(player.global_position) > 8:
-			global_position += global_position.direction_to(player.global_position) * 100 * delta
+			global_position += global_position.direction_to(player.global_position) * 250 * delta
 		else:
 			Global.money += 1
 			var audo : AudioStreamPlayer2D = $AudioStreamPlayer2D

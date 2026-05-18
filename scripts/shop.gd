@@ -2,10 +2,10 @@ extends Control
 
 @onready var upgrade_button: Button = $Panel/UpgradeButton
 
-var primary_upgrade_costs : Array[int] = [50, 90, 140, 200, 350]
+var primary_upgrade_costs : Array[int] = [50, 90, 120, 180, 300]
 var primary_upgrade_level : int = 0
 var primary_attack_speed_increment : float = 0.3
-var primary_damage_increment : float = 0.2
+var primary_damage_increment : float = 0.3
 
 func _ready() -> void:
 	load_random_weapons()
